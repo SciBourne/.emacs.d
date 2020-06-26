@@ -1,4 +1,4 @@
 # emacs.d
 GNU Emacs packages and configuration files
 
-![alt text](emacs.d/emacs.png)
+![alt text](SciBourne/emacs.d/emacs.png)
