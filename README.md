@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/SciBourne/emacs.d/raw/master/emacs.png" width="250" title="hover text">
+  <img src="https://github.com/SciBourne/emacs.d/raw/master/logo.png" width="250" title="hover text">
   <h1>GNU Emacs packages and configuration</h1>
 </div>
 
