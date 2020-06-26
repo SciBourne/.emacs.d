@@ -40,10 +40,10 @@
     (server-start))
 
 ;; SLIME setting:
-;(setq inferior-lisp-program              "/usr/bin/sbcl")
-;(add-to-list 'load-path             "/home/bourne/slime")
-;(require                                'slime-autoloads)
-;(slime-setup)
+(setq inferior-lisp-program              "/usr/bin/sbcl")
+(add-to-list 'load-path             "/home/bourne/slime")
+(require                                'slime-autoloads)
+(slime-setup)
 
 ;; Start window size
 (when (window-system)
@@ -135,13 +135,14 @@
 ;;;;;;;;;;;;;;;     CUSTOM THEME     ;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Path to theme:
 (add-to-list 'custom-theme-load-path ".emacs.d/themes/kaolin-themes")
 
 ;; Mode-line & projects trees:
 (telephone-line-mode)
-
 (treemacs)
 
+;; Main theme + treemacs theme (icons font):
 (require    'kaolin-themes)
 (load-theme 'kaolin-dark t)
 (kaolin-treemacs-theme)
@@ -151,9 +152,11 @@
   (load-theme 'kaolin-dark t)
   (kaolin-treemacs-theme))
 
+;; Opacity window parameters for GUI:
 (set-frame-parameter (selected-frame) 'alpha '(97 . 85))
 (add-to-list 'default-frame-alist '(alpha . (97 . 85)))
 
+;; Optional setting:
 (column-number-mode)
 (display-time-mode)
 (fringe-mode -1)
@@ -164,6 +167,7 @@
 (tooltip-mode -1)
 (menu-bar-mode -1)
 
+;; Font setting:
 (custom-set-faces
  '(default ((t (:family "InconsolataCyr" :foundry "outline" :slant normal :weight normal :height 109 :width normal)))))
 
