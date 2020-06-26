@@ -3,4 +3,4 @@
   <h1>GNU Emacs packages and configuration files</h1>
 </div>
 
-
+<p>This is my Emacs configuration file and packages for work on Linux and Windows.</p>
