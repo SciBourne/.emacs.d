@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://github.com/SciBourne/emacs.d/raw/master/emacs.png" width="250" title="hover text">
-  <title>GNU Emacs packages and configuration files</title>
+  <h1>GNU Emacs packages and configuration files</h1>
 </div>
 
 
