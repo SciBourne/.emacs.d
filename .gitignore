@@ -1,11 +1,24 @@
-# Compiled
+# Compiled:
 *.elc
 
-# Packaging
+# Packaging:
 .cask
 
-# Backup files
+# Backup files:
 *~
 
-# Undo-tree save-files
+# Undo-tree save-files:
 *.~undo-tree
+
+# User-specific files:
+auto-save-list/*
+.cache/*
+elpa/*
+transient/*
+url/*
+.mc-lists.el
+ac-comphist.dat
+ido.last
+network-security.data
+projectile-bookmarks.eld
+recentf
