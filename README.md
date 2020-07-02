@@ -10,44 +10,55 @@
 
 ![Screenshot](img/linux.png)
 
-### Install the `git` package if not already installed
+
+
+### Install the <b>git</b> package if not already installed
 
 Gentoo-based:
-```shell
+```BNF
 sudo emerge -av dev-vcs/git
 ````
+
 Debian-based:
-```shell
+```BNF
 sudo apt install git
 ```
+
 RPM-based:
-```shell
+```BNF
 sudo yum install git
 ```
 
+
+
 ### Clone this repository to your home directory
 
-```shell
+```BNF
 cd ~/
 git clone https://github.com/SciBourne/.emacs.d.git
 ```
 
+
+
 ### Edit configuration
 
 Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
-
 Configuration files:
 
-* `init.el`
-Main initialization file.
-
-* `config`
-User init files directory
-
-** `packaged.el`
-** `extensions.el`
-** `theme-gui.el`
-** `theme-tty.el`
-** `keybinding.el`
-** `locale.el`
-** `irc.el`
+* `~/.emacs.d/init.el`
+  Main initialization file.
+* `~/.emacs.d/config`
+  User init files directory
+* `~/.emacs.d/config/packaged.el`
+  Test
+* `~/.emacs.d/config/extensions.el`
+  Test
+* `~/.emacs.d/config/theme-gui.el`
+  Test
+* `~/.emacs.d/config/theme-tty.el`
+  Test
+* `~/.emacs.d/config/keybinding.el`
+  Test
+* `~/.emacs.d/config/locale.el`
+  Test
+* `~/.emacs.d/config/irc.el`
