@@ -10,9 +10,8 @@
 
 ![Screenshot](img/linux.png)
 
-
-
-### Install the <b>git</b> package if not already installed
+<br>
+### Install the `Git` package if not already installed
 
 Gentoo-based:
 ```BNF
@@ -29,8 +28,7 @@ RPM-based:
 sudo yum install git
 ```
 
-
-
+<br>
 ### Clone this repository to your home directory
 
 ```BNF
@@ -38,8 +36,7 @@ cd ~/
 git clone https://github.com/SciBourne/.emacs.d.git
 ```
 
-
-
+<br>
 ### Edit configuration
 
 Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
@@ -49,7 +46,7 @@ Configuration files:
   Main initialization file.
 * `~/.emacs.d/config`
   User init files directory
-* `~/.emacs.d/config/packaged.el`
+* `~/.emacs.d/config/packages.el`
   Test
 * `~/.emacs.d/config/extensions.el`
   Test
@@ -62,3 +59,4 @@ Configuration files:
 * `~/.emacs.d/config/locale.el`
   Test
 * `~/.emacs.d/config/irc.el`
+  Test
