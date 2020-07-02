@@ -4,5 +4,5 @@
 </div>
 
 <p align="center">
-  This is my simply Emacs configuration files and packages for work on Linux and Windows.
+  This is my simply Emacs configuration files for work on GNU Linux and MS Windows.
 </p>
