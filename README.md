@@ -81,13 +81,13 @@ Configure:
 sudo emerge -av app-emacs/emacs-daemon
 
 sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.user-name
-sudo rc-update add emacs.username default
+sudo rc-update add emacs.<user-name> default
 ```
 Usage:
 ```
-emacs --daemon=server-name        # usage UNIX socket for comminication
-emacsclient -t -s server-name     # for TTY
-emacsclient -c -s server-name     # for GUI
+emacs --daemon=<server-name>        # usage UNIX socket for comminication
+emacsclient -t -s <server-name>     # for TTY
+emacsclient -c -s <server-name>     # for GUI
 ```
 
 <br>
@@ -100,7 +100,55 @@ emacsclient -c -s server-name     # for GUI
 
 ### Installation Emacs binary package with ImageMagic support
 
-Download [emax64-bin-26.3.7z](https://github.com/m-parashar/emax64/releases/download/20191225/emax64-bin-26.3.7z) archive.
+* Download [emax64-bin-26.3.7z](https://github.com/m-parashar/emax64/releases/download/20191225/emax64-bin-26.3.7z)
+* Create a folder "C:\Program Files\GNU Emacs" and unpack this archive into it
+* Run file "C:\Program Files\GNU Emacs\bin\addpm.exe" as administrator for add Emacs shortcuts to the Start menu
+
+<br>
+
+### Git installation
+
+You can use any of these app:
+* [Github Desktop](https://desktop.github.com)
+* [Git for Windows](https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-32-bit.exe)
+
+<br>
+
+### Clone this repository in your machine
+
+Run CMD, Power Shell or Windows Terminal as your user and run this commands:
+```
+cd "C:\User\<user-name>\AppData\Roaming"
+git clone https://github.com/SciBourne/.emacs.d.git
+```
+
+<br>
+
+### Create environment variables
+
+Create the following variables:
+```
+HOME="C:\User\<user-name>\AppData\Roaming"
+ALTERNATE_EDITOR="C:\Program Files\GNU Emacs\bin\runemacs.exe"
+EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
+```
+![Screenshot](img/windows-screenshot-env-var.png)
+
+<br>
+
+### Sturtup Emacs as a server
+
+Create Emacs shortcuts with "--daemon" argument in Startup folder (shell:startup in explorer).
+
+Run PowerShell as your user and input this code:
+```
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Emacs.lnk")
+$Shortcut.TargetPath = "C:\Program Files\GNU Emacs IDE\bin\runemacs.exe"
+$Shortcut.Arguments = "--daemon"
+$Shortcut.Save()
+```
+
 
 
 
