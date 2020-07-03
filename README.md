@@ -86,7 +86,7 @@ I give an example for **Gentoo Linux** with **OpenRC** init system. For other di
 ```
 sudo emerge -av app-emacs/emacs-daemon
 
-sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.user-name
+sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.<user-name>
 sudo rc-update add emacs.<user-name> default
 ```
 ###### Usage:
