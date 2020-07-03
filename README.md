@@ -11,6 +11,7 @@
 ![Screenshot](img/linux.png)
 
 <br>
+
 ### Install the `Git` package if not already installed
 
 Gentoo-based:
@@ -29,6 +30,7 @@ sudo yum install git
 ```
 
 <br>
+
 ### Clone this repository to your home directory
 
 ```BNF
@@ -37,26 +39,42 @@ git clone https://github.com/SciBourne/.emacs.d.git
 ```
 
 <br>
+
 ### Edit configuration
 
 Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
 Configuration files:
-
-* `~/.emacs.d/init.el`
-  Main initialization file.
-* `~/.emacs.d/config`
-  User init files directory
-* `~/.emacs.d/config/packages.el`
-  Test
-* `~/.emacs.d/config/extensions.el`
-  Test
-* `~/.emacs.d/config/theme-gui.el`
-  Test
-* `~/.emacs.d/config/theme-tty.el`
-  Test
-* `~/.emacs.d/config/keybinding.el`
-  Test
-* `~/.emacs.d/config/locale.el`
-  Test
-* `~/.emacs.d/config/irc.el`
-  Test
+```BFN
+ ______________________________________________
+| * | emacs.d | init.el |
+|----------------------------------
+|    Main initialization file.
+|----------------------------------
+| * | emacs.d | config |
+|----------------------------------
+|    User init files directory
+|----------------------------------
+| * | emacs.d | config | packages.el
+|-------------------------------------
+|       Test
+|--------------------------------------
+| * | emacs.d | config | extensions.el
+|-----------------------------------------
+|       Test
+|-----------------------------------------
+|--------> ~/.emacs.d/config/theme-gui.el
+|       Test
+|
+|--------> ~/.emacs.d/config/theme-tty.el
+|       Test
+|
+|--------> ~/.emacs.d/config/keybinding.el
+|       Test
+|
+|--------> ~/.emacs.d/config/locale.el
+|       Test
+|
+|--------> ~/.emacs.d/config/irc.el
+|       Test
+|_____________________________________________
+```
