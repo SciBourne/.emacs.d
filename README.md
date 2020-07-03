@@ -137,10 +137,20 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 <br>
 
 ### Startup Emacs as a server
+Create Emacs shortcuts:
+* **GNU Emacs Daemon**
 
-Create Emacs shortcuts with `--daemon` argument in Startup folder **(shell:startup in explorer)**.
+with `--daemon` argument in Startup folder *(shell:startup in explorer)*
+* **GNU Emacs Client**
 
-Run PowerShell as your user and input this code.
+with `-c -n -a runemacs.exe` arguments in Programs folder *(shell:programs in explorer)*
+* **GNU Emacs IDE**
+
+without arguments in Programs folder *(shell:programs in explorer)*
+
+<br>
+
+Run PowerShell as your user and input this following code.
 
 <br>
 
@@ -149,7 +159,7 @@ Run PowerShell as your user and input this code.
 ```
 $Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs daemon.lnk")
+$Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs Daemon.lnk")
 $Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
 $Shortcut.Arguments = "--daemon"
 $Shortcut.Save()
@@ -164,7 +174,7 @@ $Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 $WshShell = New-Object -comObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs Client.lnk")
 $Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
-$Shortcut.Arguments = "--daemon"
+$Shortcut.Arguments = "-c -n -a runemacs.exe"
 $Shortcut.Save()
 ```
 
@@ -177,7 +187,6 @@ $Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 $WshShell = New-Object -comObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs IDE.lnk")
 $Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
-$Shortcut.Arguments = "--daemon"
 $Shortcut.Save()
 ```
 
