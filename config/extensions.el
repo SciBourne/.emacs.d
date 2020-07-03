@@ -10,7 +10,7 @@
 
 
 ;; Path to backup files:
-(setq backup-directory-alist `(("." . "~/.backup-emacs")))
+(setq backup-directory-alist `(("." . "~/.emacs.d/.backup-emacs")))
 
 
 ;; Best buffer latency:
