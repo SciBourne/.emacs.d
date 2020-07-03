@@ -78,9 +78,12 @@ I give an example for Gentoo Linux with OpenRC init system.
 ```
 sudo emerge -av app-emacs/emacs-daemon
 
-sudo rc-service emacs start
-emacs --daemon "server-name"
+sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.username
+sudo rc-update add emacs.username default
 
+emacs --daemon=server-name        # usage UNIX socket for comminication
+emacsclient -nw -s server-name    # for TTY
+emacsclient -c -s server-name     # for GUI
 ```
 
 
