@@ -3,11 +3,14 @@
   <h1>GNU Emacs packages and configuration</h1>
   <p>This is my simply Emacs configuration files for work on GNU Linux and MS Windows.</p>
   <br>
+  <br>
   <h6>Kaolin-dark theme for GUI</h6>
   <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-gui.jpg">
   <br>
+  <br>
   <h6>Kaolin-dark theme for TTY</h6>
   <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-tty.jpg">
+  <br>
   <br>
  </div>
 
@@ -34,8 +37,6 @@ Edit the configuration files as you like. First of all, pay attention to the set
 <br>
 
 ## Quick start for GNU Linux
-
-![Screenshot](img/linux-screenshot.png)
 
 <br>
 
@@ -99,8 +100,6 @@ emacsclient -c -s <server-name>     # for GUI
 
 ## Quick start for MS Windows
 
-![Screenshot](img/windows-screenshot.png)
-
 <br>
 
 ### Installation `Emacs` binary package with `ImageMagic` support
@@ -137,7 +136,7 @@ HOME="C:\User\<user-name>\AppData\Roaming"
 ALTERNATE_EDITOR="C:\Program Files\GNU Emacs\bin\runemacs.exe"
 EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 ```
-![Screenshot](img/windows-screenshot-env-var.png)
+![Screenshot](img/win-var.jpg)
 
 <br>
 
