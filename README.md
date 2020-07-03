@@ -137,6 +137,9 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 <br>
 
 ### Startup Emacs as a server
+
+<br>
+
 Create Emacs shortcuts:
 * **GNU Emacs Daemon**
 
@@ -149,8 +152,9 @@ with `-c -n -a runemacs.exe` arguments in Programs folder *(shell:programs in ex
 without arguments in Programs folder *(shell:programs in explorer)*
 
 <br>
+<br>
 
-Run PowerShell as your user and input this following code.
+Run PowerShell as your user and input this following code:
 
 <br>
 
