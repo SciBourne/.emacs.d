@@ -133,6 +133,7 @@ git clone https://github.com/SciBourne/.emacs.d.git
 Create the following variables:
 ```
 HOME="C:\User\<user-name>\AppData\Roaming"
+EMACS_DIR="C:\Program Files\GNU Emacs\bin"
 ALTERNATE_EDITOR="C:\Program Files\GNU Emacs\bin\runemacs.exe"
 EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 ```
@@ -147,13 +148,13 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 Create Emacs shortcuts:
 * **GNU Emacs Daemon**
 
-with `--daemon` argument in Startup folder *(shell:startup in explorer)*
+    with `--daemon` argument in Startup folder `(shell:startup in explorer)`
 * **GNU Emacs Client**
 
-with `-c -n -a runemacs.exe` arguments in Programs folder *(shell:programs in explorer)*
+    with `-c -n -a runemacs.exe` arguments in Programs folder `(shell:programs in explorer)`
 * **GNU Emacs IDE**
 
-without arguments in Programs folder *(shell:programs in explorer)*
+    without arguments in Programs folder `(shell:programs in explorer)`
 
 <br>
 <br>
