@@ -21,7 +21,9 @@ Edit the configuration files as you like. First of all, pay attention to the set
 | ~/.emacs.d/config/theme-gui.el | Color themes and packages setting for GUI |
 | ~/.emacs.d/config/theme-tty.el | Color themes and packages setting for TTY |
 | ~/.emacs.d/config/keybinding.el | User keybinding |
-| ~/.emacs.d/config/locale.el | Encoding setting |
+| ~/.emacs.d/config/locales.el | Encoding setting |
+| ~/.emacs.d/config/common-lisp.el | Setting for programming on Common Lisp (SBCL) |
+| ~/.emacs.d/config/aliases.el | User aliases |
 | ~/.emacs.d/config/irc.el | Template setting for RCIRC client |
 
 <br>
@@ -39,7 +41,8 @@ Gentoo-based:
 sudo emerge -av dev-vcs/git
 
 sudo touch /etc/portage/package.use/app-editors
-sudo echo "app-editors/emacs gpm ssl threads xpm zlib X gtk2 imagemagick jpeg png svg" > /etc/portage/package.use/app-editors
+sudo echo "app-editors/emacs gpm ssl threads xpm zlib X gtk2 imagemagick jpeg png svg" \
+> /etc/portage/package.use/app-editors
 
 sudo emerge -av app-editors/emacs
 ````
@@ -71,9 +74,12 @@ git clone https://github.com/SciBourne/.emacs.d.git
 
 ### Running Emacs as a server
 
-Possibly, this is distro-specific. I give an example for Gentoo Linux.
+I give an example for Gentoo Linux with OpenRC init system.
 ```
 sudo emerge -av app-emacs/emacs-daemon
+
+sudo rc-service emacs start
+emacs --daemon "server-name"
 
 ```
 
