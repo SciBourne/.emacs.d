@@ -12,10 +12,13 @@
 
 # User-specific files:
 auto-save-list/*
+.backup-emacs/*
 .cache/*
 elpa/*
 transient/*
 url/*
+config/irc.el
+server/server
 .mc-lists.el
 ac-comphist.dat
 ido.last
