@@ -138,7 +138,7 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 
 ### Startup Emacs as a server
 
-Create Emacs shortcuts with "--daemon" argument in Startup folder **(shell:startup in explorer)**.
+Create Emacs shortcuts with `--daemon` argument in Startup folder **(shell:startup in explorer)**.
 
 Run PowerShell as your user and input this code.
 
