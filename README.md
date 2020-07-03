@@ -136,7 +136,7 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 
 <br>
 
-### Sturtup Emacs as a server
+### Startup Emacs as a server
 
 Create Emacs shortcuts with "--daemon" argument in Startup folder (shell:startup in explorer).
 
@@ -158,7 +158,7 @@ $Shortcut.Save()
 <br>
 
 ###### Emacs client:
-<sub><i>For use as default text editor</i></sub>
+<sub><i>(for use as default text editor)</i></sub>
 ```
 $Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 $WshShell = New-Object -comObject WScript.Shell
@@ -171,7 +171,7 @@ $Shortcut.Save()
 <br>
 
 ###### Emacs IDE:
-<sub><i>Full config support. Usage GUI with treemacs and other packages for programming.</i></sub>
+<sub><i>(full config support, usage GUI with treemacs and other packages for programming)</i></sub>
 ```
 $Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
 $WshShell = New-Object -comObject WScript.Shell
@@ -191,8 +191,9 @@ C:\Users\<user-name>\AppData\Roaming\.emacs.d\emacs_explorer.reg
 ```
 
 <br>
+<br>
 
-### 
+<h6>Have a nice day :)</h6>
 
 
 
