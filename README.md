@@ -30,7 +30,7 @@ Edit the configuration files as you like. First of all, pay attention to the set
 
 ## Quick start for GNU Linux
 
-![Screenshot](img/linux.png)
+![Screenshot](img/linux-screenshot.png)
 
 <br>
 
@@ -74,24 +74,33 @@ git clone https://github.com/SciBourne/.emacs.d.git
 
 ### Running Emacs as a server
 
-I give an example for Gentoo Linux with OpenRC init system.
+I give an example for Gentoo Linux with OpenRC init system. For other distribution see [EmacsWiki](https://www.emacswiki.org/emacs/EmacsAsDaemon#toc6).
+
+Configure:
 ```
 sudo emerge -av app-emacs/emacs-daemon
 
-sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.username
+sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.user-name
 sudo rc-update add emacs.username default
-
+```
+Usage:
+```
 emacs --daemon=server-name        # usage UNIX socket for comminication
-emacsclient -nw -s server-name    # for TTY
+emacsclient -t -s server-name     # for TTY
 emacsclient -c -s server-name     # for GUI
 ```
 
+<br>
 
+## Quick start for MS Windows
 
+![Screenshot](img/windows-screenshot.png)
 
+<br>
 
+### Installation Emacs binary package with ImageMagic support
 
-
+Download [emax64-bin-26.3.7z](https://github.com/m-parashar/emax64/releases/download/20191225/emax64-bin-26.3.7z) archive.
 
 
 
