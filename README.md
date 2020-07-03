@@ -36,7 +36,7 @@ Edit the configuration files as you like. First of all, pay attention to the set
 
 ### Install the `Git` and `Emacs` packages if not already installed
 
-Gentoo-based:
+###### Gentoo-based:
 ```
 sudo emerge -av dev-vcs/git
 
@@ -47,13 +47,13 @@ sudo echo "app-editors/emacs gpm ssl threads xpm zlib X gtk2 imagemagick jpeg pn
 sudo emerge -av app-editors/emacs
 ````
 
-Debian-based:
+###### Debian-based:
 ```
 sudo apt install git
 sudo apt install emacs
 ```
 
-RPM-based:
+###### RPM-based:
 ```
 sudo yum install git
 
@@ -74,16 +74,16 @@ git clone https://github.com/SciBourne/.emacs.d.git
 
 ### Running Emacs as a server
 
-I give an example for Gentoo Linux with OpenRC init system. For other distribution see [EmacsWiki](https://www.emacswiki.org/emacs/EmacsAsDaemon#toc6).
+I give an example for **Gentoo Linux** with **OpenRC** init system. For other distribution see [EmacsWiki](https://www.emacswiki.org/emacs/EmacsAsDaemon#toc6).
 
-Configure:
+###### Configure:
 ```
 sudo emerge -av app-emacs/emacs-daemon
 
 sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.user-name
 sudo rc-update add emacs.<user-name> default
 ```
-Usage:
+###### Usage:
 ```
 emacs --daemon=<server-name>        # usage UNIX socket for comminication
 emacsclient -t -s <server-name>     # for TTY
@@ -98,7 +98,7 @@ emacsclient -c -s <server-name>     # for GUI
 
 <br>
 
-### Installation Emacs binary package with ImageMagic support
+### Installation `Emacs` binary package with `ImageMagic` support
 
 * Download [emax64-bin-26.3.7z](https://github.com/m-parashar/emax64/releases/download/20191225/emax64-bin-26.3.7z)
 * Create a folder "C:\Program Files\GNU Emacs" and unpack this archive into it
@@ -106,7 +106,7 @@ emacsclient -c -s <server-name>     # for GUI
 
 <br>
 
-### Git installation
+### `Git` installation
 
 You can use any of these app:
 * [Github Desktop](https://desktop.github.com)
@@ -114,9 +114,9 @@ You can use any of these app:
 
 <br>
 
-### Clone this repository in your machine
+### Clone this repository to your machine
 
-Run CMD, Power Shell or Windows Terminal as your user and run this commands:
+Run **CMD**, **Power Shell** or **Windows Terminal** as your user and run this commands:
 ```
 cd "C:\User\<user-name>\AppData\Roaming"
 git clone https://github.com/SciBourne/.emacs.d.git
@@ -140,14 +140,68 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 
 Create Emacs shortcuts with "--daemon" argument in Startup folder (shell:startup in explorer).
 
-Run PowerShell as your user and input this code:
+Run PowerShell as your user and input this code.
+
+<br>
+
+###### Emacs daemon:
+<sub><i>(to start the daemon after system boot)</i></sub>
 ```
+$Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Emacs.lnk")
-$Shortcut.TargetPath = "C:\Program Files\GNU Emacs IDE\bin\runemacs.exe"
+$Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs daemon.lnk")
+$Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
 $Shortcut.Arguments = "--daemon"
 $Shortcut.Save()
 ```
+
+<br>
+
+###### Emacs client:
+<sub><i>For use as default text editor</i></sub>
+```
+$Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs Client.lnk")
+$Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
+$Shortcut.Arguments = "--daemon"
+$Shortcut.Save()
+```
+
+<br>
+
+###### Emacs IDE:
+<sub><i>Full config support. Usage GUI with treemacs and other packages for programming.</i></sub>
+```
+$Startup = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"
+$WshShell = New-Object -comObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut("$Startup\GNU Emacs IDE.lnk")
+$Shortcut.TargetPath = "C:\Program Files\GNU Emacs\bin\runemacs.exe"
+$Shortcut.Arguments = "--daemon"
+$Shortcut.Save()
+```
+
+<br>
+
+### Add Emacs to context menu
+
+Run **windows-registry** file as administrator:
+```
+C:\Users\<user-name>\AppData\Roaming\.emacs.d\emacs_explorer.reg
+```
+
+<br>
+
+### 
+
+
+
+
+
+
+
+
+
 
 
 
