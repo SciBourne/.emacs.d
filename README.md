@@ -2,9 +2,14 @@
   <img src="https://github.com/SciBourne/emacs.d/raw/master/img/logo.png" width="250" title="hover text">
   <h1>GNU Emacs packages and configuration</h1>
   <p>This is my simply Emacs configuration files for work on GNU Linux and MS Windows.</p>
-</div>
-
-<br>
+  <br>
+  <h6>Kaolin-dark theme for GUI</h6>
+  <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-gui.jpg">
+  <br>
+  <h6>Kaolin-dark theme for TTY</h6>
+  <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-tty.jpg">
+  <br>
+ </div>
 
 ## Edit configuration
 
