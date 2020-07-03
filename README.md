@@ -101,8 +101,8 @@ emacsclient -c -s <server-name>     # for GUI
 ### Installation `Emacs` binary package with `ImageMagic` support
 
 * Download [emax64-bin-26.3.7z](https://github.com/m-parashar/emax64/releases/download/20191225/emax64-bin-26.3.7z)
-* Create a folder "C:\Program Files\GNU Emacs" and unpack this archive into it
-* Run file "C:\Program Files\GNU Emacs\bin\addpm.exe" as administrator for add Emacs shortcuts to the Start menu
+* Create a folder `C:\Program Files\GNU Emacs` and unpack this archive into it
+* Run file `C:\Program Files\GNU Emacs\bin\addpm.exe` as administrator for add Emacs shortcuts to the Start menu
 
 <br>
 
@@ -138,7 +138,7 @@ EMACS_SERVER_FILE="C:\Users\<user-name>\AppData\Roaming\.emacs.d\server\server"
 
 ### Startup Emacs as a server
 
-Create Emacs shortcuts with "--daemon" argument in Startup folder (shell:startup in explorer).
+Create Emacs shortcuts with "--daemon" argument in Startup folder **(shell:startup in explorer)**.
 
 Run PowerShell as your user and input this code.
 
