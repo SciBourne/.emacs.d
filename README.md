@@ -15,17 +15,17 @@
 ### Install the `Git` package if not already installed
 
 Gentoo-based:
-```BNF
+```
 sudo emerge -av dev-vcs/git
 ````
 
 Debian-based:
-```BNF
+```
 sudo apt install git
 ```
 
 RPM-based:
-```BNF
+```
 sudo yum install git
 ```
 
@@ -33,7 +33,7 @@ sudo yum install git
 
 ### Clone this repository to your home directory
 
-```BNF
+```
 cd ~/
 git clone https://github.com/SciBourne/.emacs.d.git
 ```
@@ -44,32 +44,17 @@ git clone https://github.com/SciBourne/.emacs.d.git
 
 Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
 
-Configuration files:
+###### Configuration files:
 
-* ~/emacs.d/init.el
+| Path | Description |
+| --- | --- |
+| ~/emacs.d/init.el | Main initialization file |
+| ~/.emacs.d/config | User init files directory |
+| ~/.emacs.d/config/packages.el | User package set for automatically install them at startup |
+| ~/.emacs.d/config/extensions.el | Extension, setting and modes |
+| ~/.emacs.d/config/theme-gui.el | Color themes and packages setting for GUI |
+| ~/.emacs.d/config/theme-tty.el | Color themes and packages setting for TTY |
+| ~/.emacs.d/config/keybinding.el | User keybinding |
+| ~/.emacs.d/config/locale.el | Encoding setting |
+| ~/.emacs.d/config/irc.el | Template setting for RCIRC client |
 
-  Main initialization file.
-
-* ~/.emacs.d/config
-  User init files directory
-
-* ~/.emacs.d/config/packages.el
-  Test
-
-* ~/.emacs.d/config/extensions.el
-  Test
-
-* ~/.emacs.d/config/theme-gui.el
-  Test
-
-* ~/.emacs.d/config/theme-tty.el
-  Test
-
-* ~/.emacs.d/config/keybinding.el
-  Test
-
-* ~/.emacs.d/config/locale.el
-  Test
-
-* ~/.emacs.d/config/irc.el
-  Test
