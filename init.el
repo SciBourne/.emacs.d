@@ -39,9 +39,4 @@
  '(package-selected-packages
    (quote
     (smartparens multiple-cursors xpm use-package treemacs-projectile treemacs-icons-dired telephone-line swiper svg-mode-line-themes slime rich-minority powerline mode-icons kaolin-themes irony highlight-indent-guides git-commit dashboard company-c-headers auto-complete arduino-mode all-the-icons))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(put 'upcase-region 'disabled nil)
