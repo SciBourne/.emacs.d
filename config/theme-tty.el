@@ -1,4 +1,4 @@
-2;;
+;;
 ;; User packages for decoration, settings and color theme (tty)
 ;;
 
