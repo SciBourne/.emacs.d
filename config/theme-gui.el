@@ -15,8 +15,8 @@
 
 
 ;; Decore setting:
-(setq inhibit-startup-screen t    ;Hide *scratch* buffer
-      initial-buffer-choice  t)   ;when start
+(setq inhibit-startup-screen t
+      initial-buffer-choice  t)
 
 (setq inhibit-splash-screen t)
 (setq use-dialog-box      nil)
@@ -36,12 +36,13 @@
 
 
 ;; Font:
-(set-default-font "InconsolataCyr 11")
+(set-default-font "InconsolataCyr 12")
+(setq-default line-spacing          1)
 
 
 ;; Opacity setting:
-(set-frame-parameter (selected-frame) 'alpha '(87 . 95))
-(add-to-list 'default-frame-alist '(alpha . (87 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(95 . 85))
+(add-to-list 'default-frame-alist '(alpha . (95 . 85)))
 
 
 ;; Dashboard setting:
@@ -63,8 +64,8 @@
                         (agenda .       5)
                         (registers .    5)))
 
-;(setq dashboard-set-heading-icons      t)   ;freezing on win...
-;(setq dashboard-set-file-icons         t)   ;
+(setq dashboard-set-heading-icons      t)   ;freezing on win...
+(setq dashboard-set-file-icons         t)   ; -||-
 
 (setq dashboard-set-navigator           t)
 (setq dashboard-set-init-info           t)
@@ -79,18 +80,18 @@
 
 
 ;; Mode-line theme:
-(telephone-line-mode)
+(telephone-line-mode)           ;freezing om win...
 
 
 ;; Themes:
 (require    'kaolin-themes)
 (load-theme 'kaolin-dark t)
-;(kaolin-treemacs-theme)         ;freezing UI on my machine Windows 10 (when view unicode icons)
+(kaolin-treemacs-theme)         ;freezing UI on my machine Windows 10 (when view unicode icons)
 
 (use-package kaolin-themes
   :config
-  (load-theme 'kaolin-dark t))
-;  (kaolin-treemacs-theme))      ;
+  (load-theme 'kaolin-dark t)
+  (kaolin-treemacs-theme))      ; -||-
 
 
 (provide 'theme-gui)
