@@ -13,8 +13,14 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/.backup-emacs")))
 
 
-;; Best buffer latency:
-(setq redisplay-dont-pause t)
+;; GC setting:
+(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+
+
+;; Programming mode:
+(require 'multiple-cursors)
+(global-auto-complete-mode)
 
 
 ;; Sound off:
@@ -31,10 +37,19 @@
 
 
 ;; Scrolling settings:
-(setq scroll-step                        1)
-(global-hl-line-mode                     1)
+(global-hl-line-mode                     t)
 (setq scroll-margin                     10)
-(setq scroll-conservatively          10000)
+(setq scroll-conservatively            101)
+
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
+
+(setq scroll-on-drag-smooth t)
+(setq scroll-on-drag-delay 0.005)
+(setq scroll-on-drag-motion-scale 0.05)
+(setq scroll-on-drag-motion-accelerate 0.0)
 
 
 ;; Display file size/time in mode-line:
@@ -58,15 +73,17 @@
 
 
 ;; Show-paren-mode settings:
-(show-paren-mode t)
+(show-paren-mode                         t)
+(smartparens-global-mode                 t)
 
 
-;; Highlight search resaults:
+;; Highlight:
 (setq search-highlight                   t)
 (setq query-replace-highlight            t)
 
+(highlight-parentheses-mode              t)
+(highlight-numbers-mode                  t)
 
-;; Highlight indent:
 (setq highlight-indent-guides-method                             'character)
 (setq highlight-indent-guides-auto-odd-face-perc                          3)
 (setq highlight-indent-guides-auto-even-face-perc                         3)
