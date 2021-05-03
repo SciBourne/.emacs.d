@@ -1,13 +1,16 @@
-;;
-;; User aliases
-;;
+;;;;
+;;;; User aliases
+;;;;
+
+
+;;;  Main aliases:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(defalias 'lisp       'lisp-mode)
-(defalias 'web         'web-mode)
-(defalias 'ss 'shell-script-mode)
+
+;;; END  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 (provide 'aliases)
