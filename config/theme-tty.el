@@ -1,18 +1,23 @@
-;;
-;; User packages for decoration, settings and color theme (tty)
-;;
+;;;;
+;;;; User packages for decoration, settings and color theme (tty)
+;;;;
 
 
-;; Font:
-(set-default-font "Terminus 12")
+;;;  Font:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; Decore setting:
-(setq inhibit-startup-screen t    ;Hide *scratch* buffer
-      initial-buffer-choice  t)   ;when start
+;; (set-default-font "Terminus 12")
+
+
+;;;  Decore setting:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(setq inhibit-startup-screen t
+      initial-buffer-choice  t)
 
 (setq inhibit-splash-screen t)
 (setq use-dialog-box      nil)
+
 
 (column-number-mode)
 (display-time-mode)
@@ -23,13 +28,16 @@
 (menu-bar-mode             -1)
 
 
-;; Mode-line theme:
+;;;  Mode-line theme:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 (telephone-line-mode)
 
 
-;; Dashboard setting:
-(require 'dashboard)
+;;;  Dashboard setting:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(require 'dashboard)
 (dashboard-setup-startup-hook)
 
 (setq dashboard-init-info                               "Dashboard:")
@@ -54,9 +62,15 @@
 (setq show-week-agenda-p                t)
 
 
-;; Theme:
+;;;  Theme:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 (require    'kaolin-themes)
 (load-theme 'kaolin-dark t)
+
+
+;;;  END  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 (provide 'theme-tty)
