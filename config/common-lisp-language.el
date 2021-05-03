@@ -8,11 +8,11 @@
 
 (when (system-is-windows)
   (setq inferior-lisp-program
-	"C:/Program Files/Steel Bank Common Lisp/2.0.0/sbcl.exe"))
+	"C:/Program Files/your/path/to/sbcl.exe"))
 
 
 (when (system-is-linux)
-  (setq inferior-lisp-program "/usr/bin/sbcl"))
+  (setq inferior-lisp-program "/your/path/to/sbcl"))
 
 
 ;;;  Slime:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -123,6 +123,7 @@
 ;;;  Highlight theme:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;;; TODO: Rebuild color theme:
 (defun font-lock-theme-common-lisp ()
   (custom-set-faces
 
