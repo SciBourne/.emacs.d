@@ -1,8 +1,8 @@
 * Tasks
 ** TODO IRC color theme                                     :irc:color:theme:
    :PROPERTIES:
-   :Created:  <2021-05-03 Пн 13:12>
-   :Source:   [[file:~/SciBourne/.emacs.d/config/irc.el::;;; TODO: Rebuild color theme: (custom-set-faces '(rcirc-my-nick ((t (:foreground "medium aquamarine")))) '(rcirc-nick-in-message-full-line '((t (:foreground "light blue" :weight bold)))) '(rcirc-other-nick ((t (:foreground "antique white")))) '(rcirc-server ((t (:foreground "slate gray")))) '(rcirc-timestamp ((t (:inherit default :foreground "sky blue"))))) (custom-set-variables '(rcirc-bright-nicks '("wiselord" "ax-hack"))) (put 'upcase-region 'disabled nil) (custom-set-faces '(rcirc-my-nick ((t (:foreground "medium aquamarine")))) '(rcirc-nick-in-message-full-line '((t (:foreground "light blue" :weight bold)))) '(rcirc-other-nick ((t (:foreground "antique white")))) '(rcirc-server ((t (:foreground "slate gray")))) '(rcirc-timestamp ((t (:inherit default :foreground "sky blue")))))]]
+   :Created:  <2021-05-03 Пн 13:23>
+   :Source:   [[file:~/SciBourne/.emacs.d/config/irc.el::;;; TODO: Rebuild color theme: (custom-set-faces '(rcirc-my-nick ((t (:foreground "medium aquamarine")))) '(rcirc-nick-in-message-full-line '((t (:foreground "light blue" :weight bold)))) '(rcirc-other-nick ((t (:foreground "antique white")))) '(rcirc-server ((t (:foreground "slate gray")))) '(rcirc-timestamp ((t (:inherit default :foreground "sky blue"))))) (put 'upcase-region 'disabled nil) (custom-set-faces '(rcirc-my-nick ((t (:foreground "medium aquamarine")))) '(rcirc-nick-in-message-full-line '((t (:foreground "light blue" :weight bold)))) '(rcirc-other-nick ((t (:foreground "antique white")))) '(rcirc-server ((t (:foreground "slate gray")))) '(rcirc-timestamp ((t (:inherit default :foreground "sky blue")))))]]
    :END:
 
 Rebuild color theme:
@@ -22,10 +22,8 @@ Rebuild color theme:
                                           :foreground "sky blue")))))
 
 
-  (custom-set-variables
-   '(rcirc-bright-nicks '("wiselord" "ax-hack")))
-
   (put 'upcase-region 'disabled nil)
+
 
   (custom-set-faces
    '(rcirc-my-nick                    ((t (:foreground "medium aquamarine"))))
