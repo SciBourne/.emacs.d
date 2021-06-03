@@ -88,6 +88,7 @@ sudo emerge -av app-emacs/emacs-daemon
 
 sudo ln -s /etc/init.d/emacs /etc/init.d/emacs.<user-name>
 sudo rc-update add emacs.<user-name> default
+sudo rc-service emacs.<user-name> start
 ```
 ###### Usage:
 ```
