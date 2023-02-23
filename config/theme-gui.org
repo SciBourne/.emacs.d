@@ -1,0 +1,244 @@
+#+title: GNU Emacs congiguration file: theme-gui.org
+#+author: SciBourne
+
+#+LANGUAGE: ru
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Общие настройки
+
+** Параметры окна
+
+#+BEGIN_SRC emacs-lisp
+  (defmacro custom-default-frame-alist ()
+    (let ((width-size (gensym))
+          (height-size (gensym)))
+
+      `(let ((,width-size ,(round (/
+                                   (* 0.5 (x-display-pixel-width))
+                                   (frame-char-width))))
+
+             (,height-size ,(round (/
+                                    (* 0.7 (x-display-pixel-height))
+                                    (frame-char-height)))))
+
+         (custom-set-variables '(default-frame-alist
+                                 '((alpha 92 . 97)
+
+                                   (top . 2)
+                                   (left . 2)
+
+                                   (width . ,width-size)
+
+                                   (height . ,height-size)
+
+                                   (fullscreen . maximized)
+
+                                   (left-fringe . 8)
+                                   (right-fringe . 0)
+
+                                   (vertical-scroll-bars)))))))
+
+
+  (custom-default-frame-alist)
+#+END_SRC
+
+
+** Декорации
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+
+   '(column-number-mode                  t)
+   '(display-time-mode                 nil)
+   '(line-spacing                        1)
+   '(scroll-bar-mode                   nil)
+   '(show-paren-mode                     t)
+   '(tooltip-mode                      nil)
+   '(tool-bar-mode                     nil)
+   '(menu-bar-mode                     nil)
+   '(inhibit-startup-screen              t)
+   '(inhibit-splash-screen               t)
+   '(initial-buffer-choice               t)
+   '(use-dialog-box                    nil)
+   '(global-display-line-numbers-mode    t)
+   '(size-indication-mode                t))
+#+END_SRC
+
+
+
+* Тема
+
+#+BEGIN_SRC emacs-lisp
+  (require    'kaolin-themes)
+  (load-theme 'kaolin-dark t)
+  (kaolin-treemacs-theme)
+
+  (use-package kaolin-themes
+    :config
+    (load-theme 'kaolin-dark t)
+    (kaolin-treemacs-theme))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-faces
+
+   '(cursor
+     ((t
+       (:background "seashell"))))
+
+   '(error
+     ((t
+       (:foreground "indian red"))))
+
+   '(font-lock-builtin-face
+     ((t
+       (:foreground "rosy brown"))))
+
+   '(font-lock-comment-delimiter-face
+     ((t
+       (:foreground "gray20"
+        :slant normal))))
+
+   '(font-lock-comment-face
+     ((t
+       (:foreground "gray20"
+        :slant normal))))
+
+   '(font-lock-constant-face
+     ((t
+       (:foreground "tomato"))))
+
+   '(font-lock-doc-face
+     ((t
+       (:foreground "dark slate gray"))))
+
+   '(font-lock-function-name-face
+     ((t
+       (:foreground "spring green"))))
+
+   '(font-lock-keyword-face
+     ((t
+       (:foreground "deep sky blue"))))
+
+   '(font-lock-negation-char-face
+     ((t
+       (:foreground "red"))))
+
+   '(font-lock-preprocessor-face
+     ((t
+       (:foreground "medium purple"))))
+
+   '(font-lock-regexp-grouping-backslash
+     ((t
+       (:foreground "#cd5c60"))))
+
+   '(font-lock-regexp-grouping-construct
+     ((t
+       (:foreground "#cd5c60"))))
+
+   '(font-lock-type-face
+     ((t
+       (:foreground "pale green"))))
+
+   '(font-lock-variable-name-face
+     ((t
+       (:foreground "cornflower blue"))))
+
+   '(highlight-numbers-number
+     ((t
+       (:foreground "light green")))))
+#+END_SRC
+
+
+
+* Щрифты
+
+#+BEGIN_SRC emacs-lisp
+  (global-font-lock-mode 1)
+  (setq font-lock-maximum-decoration t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-faces '(default
+                      ((t
+                        (:inherit nil
+                         :extend nil
+                         :stipple nil
+                         :background "#18181B"
+                         :foreground "#4D5566"
+                         :inverse-video nil
+                         :box nil
+                         :strike-through nil
+                         :overline nil
+                         :underline nil
+                         :slant normal
+                         :weight normal
+                         :height 120
+                         :width normal
+                         :foundry "Xos4"
+                         :family "Terminus")))))
+#+END_SRC
+
+
+
+* Treemacs
+
+#+BEGIN_SRC emacs-lisp
+  (treemacs)
+  (treemacs-resize-icons 22)
+#+END_SRC
+
+
+
+* Mode line
+
+#+BEGIN_SRC emacs-lisp
+  (require 'telephone-line)
+
+
+  (setq telephone-line-lhs
+        '((evil   . (telephone-line-evil-tag-segment))
+          (accent . (telephone-line-vc-segment
+                     telephone-line-erc-modified-channels-segment
+                     telephone-line-process-segment))
+          (nil    . (telephone-line-minor-mode-segment
+                     telephone-line-buffer-segment))))
+
+  (setq telephone-line-rhs
+        '((nil    . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment))
+          (evil   . (telephone-line-airline-position-segment))))
+
+
+  (telephone-line-mode t)
+#+END_SRC
+
+
+
+* Dashboard
+
+#+BEGIN_SRC emacs-lisp
+  (require 'dashboard)
+  (dashboard-setup-startup-hook)
+
+  (setq dashboard-banner-logo-title  "Welcome to GNU Emacs, commander!")
+  (setq dashboard-init-info                                "Dashboard:")
+  (setq dashboard-set-init-info                                       t)
+  (setq dashboard-set-footer                                          t)
+  (setq dashboard-footer-messages           '("Shut up and hack, bro!"))
+  (setq dashboard-show-shortcuts                                    nil)
+  (setq dashboard-center-content                                      t)
+
+  (setq dashboard-items '((recents .   10)))
+
+  (setq dashboard-set-heading-icons       t)
+  (setq dashboard-set-file-icons          t)
+
+  (setq dashboard-set-navigator           t)
+  (setq dashboard-set-init-info           t)
+#+END_SRC
