@@ -1,0 +1,89 @@
+#+title: GNU Emacs congiguration file: packages.org
+#+author: SciBourne
+
+#+LANGUAGE: ru
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Загрузка встроенных пакетов
+
+#+BEGIN_SRC emacs-lisp
+  (require 'cl-lib)
+  (require 'package)
+  (require 'use-package)
+#+END_SRC
+
+
+
+* Подключение репозиториев
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/")     t)
+  (add-to-list 'package-archives '("elpa" .  "https://elpa.gnu.org/packages/")  t)
+#+END_SRC
+
+
+
+* Функция установки пакетов
+
+#+BEGIN_SRC emacs-lisp
+  (defun :install-packages (&rest packages)
+    (let ((ready-to-install (cl-remove-if #'package-installed-p packages)))
+      (when ready-to-install
+         (package-refresh-contents)
+         (cl-loop for package-name in ready-to-install
+               do (package-install package-name)))))
+#+END_SRC
+
+
+
+* Пакеты для темы оформления
+
+#+BEGIN_SRC emacs-lisp
+  (:install-packages 'kaolin-themes
+                     'all-the-icons
+                     'dashboard
+                     'treemacs
+                     'treemacs-projectile
+                     'treemacs-icons-dired
+                     'telephone-line
+                     'svg-mode-line-themes)
+#+END_SRC
+
+
+
+* Общие пакеты расширения
+
+#+BEGIN_SRC emacs-lisp
+  (:install-packages 'highlight-indent-guides
+                     'highlight-parentheses
+                     'highlight-numbers
+                     'highlight
+                     'swiper
+                     'multiple-cursors
+                     'ace-jump-mode)
+#+END_SRC
+
+
+
+* Пакеты для разработки
+
+#+BEGIN_SRC emacs-lisp
+  (:install-packages 'auto-complete
+                     'projectile
+                     'company
+                     'elpy
+                     'magit
+                     'pyenv-mode
+                     'smartparens
+                     'py-autopep8
+                     'flycheck
+                     'websocket
+                     'json-mode
+                     'markdown-mode
+                     'csharp-mode)
+#+END_SRC
