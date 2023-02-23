@@ -1,0 +1,127 @@
+#+title: GNU Emacs congiguration file: keybinding.org
+#+author: SciBourne
+
+#+LANGUAGE: ru
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Общие привязки
+
+** Загрузка и выполнение файла
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key   [C-tab]             'load-file)
+#+END_SRC
+
+
+** Eshell (оболочка + выполнение elisp выражений)
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key   (kbd "C-`")         'eshell-command)
+#+END_SRC
+
+
+** Swiper (интерактивный поиск)
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key   (kbd "C-c s")       'swiper-isearch)
+#+END_SRC
+
+
+** Treemacs (боковая панель, файлы проектов)
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key   (kbd "C-c C-w w")   'treemacs-toggle-fixed-width)
+#+END_SRC
+
+
+** Список буферов
+
+#+BEGIN_SRC emacs-lisp
+  (require                          'bs)
+  (require                     'ibuffer)
+  (global-set-key (kbd "<f2>") 'bs-show)
+#+END_SRC
+
+
+** Быстрое перемещение к выбранному символу
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+#+END_SRC
+
+
+** Подсветка всех совпадений с символом
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c h") 'symbol-overlay-mode)
+#+END_SRC
+
+
+** Сворачивание блоков кода в компактный вид
+
+#+BEGIN_SRC emacs-lisp
+  (defun set-selective-display-dlw (&optional level)
+    (interactive "P")
+    (if (eq selective-display (1+ (current-column)))
+        (set-selective-display 0)
+        (set-selective-display
+         (or level (1+ (current-column))))))
+
+
+  (global-set-key (kbd "<f5>") 'set-selective-display-dlw)
+#+END_SRC
+
+
+** Multiple-cursors (добавление дополнительных курсоров)
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key   [M-S-mouse-3]  'mc/mark-all-symbols-like-this-in-defun)
+  (global-set-key   [M-S-mouse-2]  'mc/mark-all-symbols-like-this)
+  (global-set-key   [M-S-mouse-1]  'mc/add-cursor-on-click)
+  (global-set-key   (kbd "M--")    'mc/mark-next-like-this)
+#+END_SRC
+
+
+
+* Привязка к языкам разработки
+
+** Common Lisp
+
+#+BEGIN_SRC emacs-lisp
+  ;;
+#+END_SRC
+
+
+** Python
+
+*** Перейти к определению функции/класса
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c d") 'elpy-goto-definition-other-window)
+#+END_SRC
+
+
+*** Найти все совпадения имени в проекте
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c g") 'projectile-grep)
+#+END_SRC
+
+
+*** Проверка синтаксиса
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-=") 'flymake-mode)
+#+END_SRC
+
+
+*** Проверка синтаксиса
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c v") 'pyvenv-workon)
+#+END_SRC
