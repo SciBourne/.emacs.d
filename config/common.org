@@ -1,0 +1,261 @@
+#+title: GNU Emacs congiguration file: common.org
+#+author: SciBourne
+
+#+LANGUAGE: ru
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Общие настройки
+
+** Директория backup-файлов
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist `(("." . "~/.emacs.d/.backup-emacs")))
+#+END_SRC
+
+
+** Настройки локали
+
+#+BEGIN_SRC emacs-lisp
+  (setq locale-coding-system               'utf-8)
+
+  (set-input-method            "russian-computer")
+  (set-language-environment              'Russian)
+  (set-default-coding-systems              'utf-8)
+  (set-terminal-coding-system              'utf-8)
+  (prefer-coding-system                    'utf-8)
+#+END_SRC
+
+
+** Отключение сигналов динамика
+
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+END_SRC
+
+
+** Навигация между окнами
+
+#+BEGIN_SRC emacs-lisp
+  (windmove-default-keybindings 'meta)
+#+END_SRC
+
+
+** Отключение курсора в неактивных окнах
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+   '(cursor-in-non-selected-windows '(bar . 0)))
+#+END_SRC
+
+
+** Прокрутка окон
+
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-margin 10)
+  (setq scroll-conservatively 101)
+
+  (setq mouse-wheel-scroll-amount '(3 ((shift) . 1)))
+  (setq mouse-wheel-progressive-speed nil)
+  (setq mouse-wheel-follow-mouse 't)
+  (setq scroll-step 1)
+
+  (setq scroll-on-drag-smooth t)
+  (setq scroll-on-drag-delay 0.005)
+  (setq scroll-on-drag-motion-scale 0.05)
+  (setq scroll-on-drag-motion-accelerate 0.0)
+#+END_SRC
+
+
+** Emacs сервер
+
+#+BEGIN_SRC emacs-lisp
+  (require 'server)
+  (unless (server-running-p)
+    (server-start))
+#+END_SRC
+
+
+** Подмена yes-or-no-p
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+
+
+* Настройка редактора
+
+** Подстветка текущей строки
+
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode t)
+#+END_SRC
+
+
+** Автодополнение
+
+#+BEGIN_SRC emacs-lisp
+  (global-auto-complete-mode)
+#+END_SRC
+
+
+** Скрытие курсора в неактивном окне
+
+#+BEGIN_SRC emacs-lisp
+  (setq cursor-in-non-selected-windows nil)
+#+END_SRC
+
+
+** Автоудаление лишних пробелов и табуляций
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+
+** Удаление выделенного фрагмента при вводе
+
+#+BEGIN_SRC emacs-lisp
+  (delete-selection-mode t)
+#+END_SRC
+
+
+** Перенос строк
+
+#+BEGIN_SRC emacs-lisp
+  (setq word-wrap t)
+  (global-visual-line-mode t)
+#+END_SRC
+
+
+** Подсветка парных символов (скобки, кавычки и т. п.)
+
+#+BEGIN_SRC emacs-lisp
+  (setq show-paren-delay 0.15)
+  (setq show-paren-style 'parenthesis)
+
+  (show-paren-mode t)
+  (highlight-parentheses-mode t)
+#+END_SRC
+
+
+** Подсветка чисел
+
+#+BEGIN_SRC emacs-lisp
+  (highlight-numbers-mode t)
+#+END_SRC
+
+
+** Подсветка совпадений поиска
+
+#+BEGIN_SRC emacs-lisp
+  (setq search-highlight t)
+  (setq query-replace-highlight t)
+#+END_SRC
+
+
+** Подсветка направляющих
+
+#+BEGIN_SRC emacs-lisp
+  (setq highlight-indent-guides-method 'column)
+  (setq highlight-indent-guides-auto-odd-face-perc 3)
+  (setq highlight-indent-guides-auto-even-face-perc 3)
+  (setq highlight-indent-guides-auto-character-face-perc 5)
+
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+#+END_SRC
+
+
+** Нумерация строк
+
+#+BEGIN_SRC emacs-lisp
+  (require 'display-line-numbers)
+  (global-display-line-numbers-mode)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defcustom display-line-numbers-exempt-modes '(treemacs-mode
+                                                 vterm-mode
+                                                 eshell-mode
+                                                 shell-mode
+                                                 term-mode
+                                                 ansi-term-mode)
+
+    "Major modes on which to disable the linum mode,
+  exempts them from global requirement"
+
+    :group 'display-line-numbers
+    :type 'list
+    :version "green")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun display-line-numbers--turn-on ()
+
+    "turn on line numbers but excempting certain majore modes
+  defined in `display-line-numbers-exempt-modes'"
+
+    (if (and
+         (not (member major-mode display-line-numbers-exempt-modes))
+         (not (minibufferp)))
+        (display-line-numbers-mode)))
+#+END_SRC
+
+
+
+* Настройка mode-line
+
+** Формат отображения времени
+
+#+BEGIN_SRC emacs-lisp
+  (setq display-time-24hr-format t)
+  (display-time-mode nil)
+#+END_SRC
+
+
+
+* Настройка пакетов расширений
+
+** Multiple-cursors
+
+#+BEGIN_SRC emacs-lisp
+  (require 'multiple-cursors)
+#+END_SRC
+
+
+** Ivy
+
+#+BEGIN_SRC emacs-lisp
+  (ivy-mode t)
+#+END_SRC
+
+
+** Swiper
+
+#+BEGIN_SRC emacs-lisp
+  (advice-add 'swiper :after #'recenter)
+#+END_SRC
+
+
+** Ido
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ido)
+  (ido-mode t)
+  (icomplete-mode t)
+  (ido-everywhere t)
+  (setq ido-vitrual-buffers t)
+  (setq ido-enable-flex-matching t)
+#+END_SRC
+
+
+** Smartparens
+
+#+BEGIN_SRC emacs-lisp
+  (smartparens-global-mode t)
+#+END_SRC
