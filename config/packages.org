@@ -1,7 +1,7 @@
 #+title: GNU Emacs congiguration file: packages.org
 #+author: SciBourne
 
-#+LANGUAGE: ru
+#+LANGUAGE: en
 #+PROPERTY: results silent
 #+STARTUP: showall
 #+STARTUP: indent
@@ -9,7 +9,7 @@
 
 
 
-* Загрузка встроенных пакетов
+* Load necessary packages
 
 #+BEGIN_SRC emacs-lisp
   (require 'cl-lib)
@@ -19,7 +19,7 @@
 
 
 
-* Подключение репозиториев
+* Add repositories
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/")     t)
@@ -28,20 +28,7 @@
 
 
 
-* Функция установки пакетов
-
-#+BEGIN_SRC emacs-lisp
-  (defun :install-packages (&rest packages)
-    (let ((ready-to-install (cl-remove-if #'package-installed-p packages)))
-      (when ready-to-install
-         (package-refresh-contents)
-         (cl-loop for package-name in ready-to-install
-               do (package-install package-name)))))
-#+END_SRC
-
-
-
-* Пакеты для темы оформления
+* UI packages
 
 #+BEGIN_SRC emacs-lisp
   (:install-packages 'kaolin-themes
@@ -56,7 +43,7 @@
 
 
 
-* Общие пакеты расширения
+* Extension packages
 
 #+BEGIN_SRC emacs-lisp
   (:install-packages 'highlight-indent-guides
@@ -70,7 +57,7 @@
 
 
 
-* Пакеты для разработки
+* Development packages
 
 #+BEGIN_SRC emacs-lisp
   (:install-packages 'auto-complete
