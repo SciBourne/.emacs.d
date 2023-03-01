@@ -1,0 +1,176 @@
+#+title: GNU Emacs congiguration file: theme-tty.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Common UI setting
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+
+   '(column-number-mode                  t)
+   '(display-time-mode                 nil)
+   '(line-spacing                        1)
+   '(show-paren-mode                     t)
+   '(tooltip-mode                      nil)
+   '(inhibit-startup-screen              t)
+   '(inhibit-splash-screen               t)
+   '(initial-buffer-choice               t)
+   '(global-display-line-numbers-mode    t)
+   '(size-indication-mode                t))
+#+END_SRC
+
+
+
+* Theme
+
+#+BEGIN_SRC emacs-lisp
+  (require    'kaolin-themes)
+  (load-theme 'kaolin-dark t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-faces
+
+   '(cursor
+     ((t
+       (:background "seashell"))))
+
+   '(error
+     ((t
+       (:foreground "indian red"))))
+
+   '(font-lock-builtin-face
+     ((t
+       (:foreground "rosy brown"))))
+
+   '(font-lock-comment-delimiter-face
+     ((t
+       (:foreground "gray20"
+        :slant normal))))
+
+   '(font-lock-comment-face
+     ((t
+       (:foreground "gray20"
+        :slant normal))))
+
+   '(font-lock-constant-face
+     ((t
+       (:foreground "tomato"))))
+
+   '(font-lock-doc-face
+     ((t
+       (:foreground "dark slate gray"))))
+
+   '(font-lock-function-name-face
+     ((t
+       (:foreground "spring green"))))
+
+   '(font-lock-keyword-face
+     ((t
+       (:foreground "deep sky blue"))))
+
+   '(font-lock-negation-char-face
+     ((t
+       (:foreground "red"))))
+
+   '(font-lock-preprocessor-face
+     ((t
+       (:foreground "medium purple"))))
+
+   '(font-lock-regexp-grouping-backslash
+     ((t
+       (:foreground "#cd5c60"))))
+
+   '(font-lock-regexp-grouping-construct
+     ((t
+       (:foreground "#cd5c60"))))
+
+   '(font-lock-type-face
+     ((t
+       (:foreground "pale green"))))
+
+   '(font-lock-variable-name-face
+     ((t
+       (:foreground "cornflower blue"))))
+
+   '(highlight-numbers-number
+     ((t
+       (:foreground "light green")))))
+#+END_SRC
+
+
+
+* Font
+
+#+BEGIN_SRC emacs-lisp
+  (global-font-lock-mode 1)
+  (setq font-lock-maximum-decoration t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-faces '(default
+                      ((t
+                        (:inherit nil
+                         :extend nil
+                         :stipple nil
+                         :background "#18181B"
+                         :foreground "#4D5566"
+                         :inverse-video nil
+                         :box nil
+                         :strike-through nil
+                         :overline nil
+                         :underline nil
+                         :slant normal
+                         :weight normal
+                         :height 120
+                         :width normal
+                         :foundry "Xos4"
+                         :family "Terminus")))))
+#+END_SRC
+
+
+
+* Dashboard
+
+#+BEGIN_SRC emacs-lisp
+  (require 'dashboard)
+  (dashboard-setup-startup-hook)
+
+  (setq dashboard-init-info                               "Dashboard:")
+  (setq dashboard-set-init-info                                      t)
+  (setq dashboard-set-footer                                         t)
+  (setq dashboard-footer-messages          '("Shut up and hack, bro!"))
+  (setq dashboard-footer-icon                                      ">")
+  (setq dashboard-show-shortcuts                                   nil)
+  (setq dashboard-center-content                                     t)
+
+  (setq dashboard-items '((recents  .     10)))
+
+
+  (setq dashboard-set-navigator           t)
+  (setq dashboard-set-init-info           t)
+
+#+END_SRC
+
+
+
+* Treemacs
+
+#+BEGIN_SRC emacs-lisp
+  (treemacs)
+#+END_SRC
+
+
+
+* Mode Line
+
+#+BEGIN_SRC emacs-lisp
+  (telephone-line-mode)
+#+END_SRC
