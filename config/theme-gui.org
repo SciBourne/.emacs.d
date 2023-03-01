@@ -1,7 +1,7 @@
 #+title: GNU Emacs congiguration file: theme-gui.org
 #+author: SciBourne
 
-#+LANGUAGE: ru
+#+LANGUAGE: en
 #+PROPERTY: results silent
 #+STARTUP: showall
 #+STARTUP: indent
@@ -9,46 +9,18 @@
 
 
 
-* Общие настройки
+* Main setup
 
-** Параметры окна
+** Start frame setting
 
 #+BEGIN_SRC emacs-lisp
-  (defmacro custom-default-frame-alist ()
-    (let ((width-size (gensym))
-          (height-size (gensym)))
-
-      `(let ((,width-size ,(round (/
-                                   (* 0.5 (x-display-pixel-width))
-                                   (frame-char-width))))
-
-             (,height-size ,(round (/
-                                    (* 0.7 (x-display-pixel-height))
-                                    (frame-char-height)))))
-
-         (custom-set-variables '(default-frame-alist
-                                 '((alpha 92 . 97)
-
-                                   (top . 2)
-                                   (left . 2)
-
-                                   (width . ,width-size)
-
-                                   (height . ,height-size)
-
-                                   (fullscreen . maximized)
-
-                                   (left-fringe . 8)
-                                   (right-fringe . 0)
-
-                                   (vertical-scroll-bars)))))))
-
-
-  (custom-default-frame-alist)
+  (custom-default-frame-alist :frame-alpha (92 . 97)
+                              :frame-size (0.5 0.7)
+                              :frame-maximized t)
 #+END_SRC
 
 
-** Декорации
+** Common UI seetting
 
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
@@ -71,7 +43,7 @@
 
 
 
-* Тема
+* Theme
 
 #+BEGIN_SRC emacs-lisp
   (require    'kaolin-themes)
@@ -156,7 +128,7 @@
 
 
 
-* Щрифты
+* Font
 
 #+BEGIN_SRC emacs-lisp
   (global-font-lock-mode 1)
@@ -234,7 +206,7 @@
   (setq dashboard-show-shortcuts                                    nil)
   (setq dashboard-center-content                                      t)
 
-  (setq dashboard-items '((recents .   10)))
+  (setq dashboard-items '((recents .   20)))
 
   (setq dashboard-set-heading-icons       t)
   (setq dashboard-set-file-icons          t)
