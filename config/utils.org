@@ -1,0 +1,198 @@
+#+title: GNU Emacs congiguration file: utils.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Package installer
+
+#+BEGIN_SRC emacs-lisp
+  (defun :install-packages (&rest packages)
+    (let ((ready-to-install (cl-remove-if #'package-installed-p packages)))
+      (when ready-to-install
+         (package-refresh-contents)
+         (cl-loop for package-name in ready-to-install
+               do (package-install package-name)))))
+#+END_SRC
+
+
+* Wrapper for define-key
+
+#+BEGIN_SRC emacs-lisp
+  (defmacro set-key (map &rest keybindings)
+    (let ((map (intern-soft (cl-subseq (symbol-name map) 1))))
+      `(progn ,@(cl-loop for (key func) on keybindings by 'cddr
+			 collect `(define-key ,map ,key ,func)))))
+#+END_SRC
+
+
+
+* Code folding
+
+#+BEGIN_SRC emacs-lisp
+  (defun set-selective-display-dlw (&optional level)
+    (interactive "P")
+    (if (eq selective-display (1+ (current-column)))
+        (set-selective-display 0)
+        (set-selective-display
+         (or level (1+ (current-column))))))
+#+END_SRC
+
+
+
+* Frame setting at startup
+
+#+BEGIN_SRC emacs-lisp
+  (cl-defmacro custom-default-frame-alist (&key frame-alpha frame-size frame-maximized)
+    (let ((width-size (gensym))
+          (height-size (gensym)))
+
+      `(let ((,width-size ,(round (/
+                                   (* (nth 0 frame-size) (x-display-pixel-width))
+                                   (frame-char-width))))
+
+             (,height-size ,(round (/
+                                    (* (nth 1 frame-size) (x-display-pixel-height))
+                                    (frame-char-height)))))
+
+         (custom-set-variables '(default-frame-alist
+                                 '((alpha ,@frame-alpha)
+
+                                   (top . 2)
+                                   (left . 2)
+
+                                   (width . ,width-size)
+
+                                   (height . ,height-size)
+
+                                   ,(when frame-maximized
+                                      '(fullscreen . maximized))
+
+                                   (left-fringe . 8)
+                                   (right-fringe . 0)
+
+                                   (vertical-scroll-bars)))))))
+#+END_SRC
+
+
+
+* Line numbers
+
+#+BEGIN_SRC emacs-lisp
+  (require 'display-line-numbers)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defcustom display-line-numbers-exempt-modes '(treemacs-mode
+                                                 vterm-mode
+                                                 eshell-mode
+                                                 shell-mode
+                                                 term-mode
+                                                 ansi-term-mode)
+
+    "Major modes on which to disable the linum mode,
+  exempts them from global requirement"
+
+    :group 'display-line-numbers
+    :type 'list
+    :version "green")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun display-line-numbers--turn-on ()
+
+    "turn on line numbers but excempting certain majore modes
+  defined in `display-line-numbers-exempt-modes'"
+
+    (if (and
+         (not (member major-mode display-line-numbers-exempt-modes))
+         (not (minibufferp)))
+        (display-line-numbers-mode)))
+#+END_SRC
+
+
+
+* Syntax highlight
+
+** Common Lisp
+
+#+BEGIN_SRC emacs-lisp
+  (defmacro font-lock-add-common-lisp-keywords (&rest args)
+    (let* ((class (car args))
+           (keywords (cdr args))
+
+           (face-name
+             (intern (concat "highlight-common-lisp-"
+                             (substring (symbol-name class) 1))))
+
+           (rx-template
+             (eval (cl-case class
+                            (:variables
+                             `(rx (any ?+ ?*)
+                                  (+ (any word
+                                          digit
+                                          ?-
+                                          ?+
+                                          ?*
+                                          ?=
+                                          ?^
+                                          ?%
+                                          ?&
+                                          ?$
+                                          ?!
+                                          ??
+                                          ?/
+                                          ?:))))
+
+                            (:quoted-symbols
+                             `(rx "'"
+                                  (+ (any word
+                                          digit
+                                          ?-
+                                          ?+
+                                          ?*
+                                          ?=
+                                          ?^
+                                          ?%
+                                          ?&
+                                          ?$
+                                          ?!
+                                          ??
+                                          ?/
+                                          ?:))))
+
+                            (:parentheses `(rx (or ,@keywords)))
+
+                            (otherwise `(rx symbol-start
+                                            (or ,@keywords)
+                                            symbol-end))))))
+
+      `(font-lock-add-keywords
+        'lisp-mode '((,rx-template . ',face-name)))))
+#+END_SRC
+
+
+** Python
+
+#+BEGIN_SRC emacs-lisp
+  (defmacro font-lock-add-python-keywords (&rest args)
+    (let* ((class (car args))
+           (keywords (cdr args))
+
+           (face-name
+             (intern (concat "highlight-python-"
+                             (substring (symbol-name class) 1))))
+
+           (rx-template
+             (eval (cl-case class
+                            (:named-parameters `(rx (+ (any word ?_ )) (any "=")))
+                            (otherwise `(rx (or ,@keywords)))))))
+
+      `(font-lock-add-keywords
+        'python-mode '((,rx-template . ',face-name)))))
+#+END_SRC
