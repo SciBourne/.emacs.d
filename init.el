@@ -9,6 +9,7 @@
 
 
 (cl-defmacro load-org-config (&key sub-dir
+				   user-utils
 				   install-packages
 				   common-settings
 				   keybindings
@@ -30,7 +31,8 @@
 						(message " [ OK ]  Load file: %s" path))
 					 (error (message " [ ER ]  Cannot load file %s: %s" path error-msg)))))
 
-	     (let ((file-names `(,install-packages
+	     (let ((file-names `(,user-utils
+				 ,install-packages
 				 ,common-settings
 				 ,keybindings
 				 ,@lang-modes
@@ -44,6 +46,7 @@
 
 (load-org-config :sub-dir            "config"
 
+		 :user-utils         "utils"
 		 :install-packages   "packages.org"
 		 :common-settings    "common.org"
 		 :keybindings        "keybindings.org"
