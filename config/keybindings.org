@@ -1,7 +1,7 @@
 #+title: GNU Emacs congiguration file: keybinding.org
 #+author: SciBourne
 
-#+LANGUAGE: ru
+#+LANGUAGE: en
 #+PROPERTY: results silent
 #+STARTUP: showall
 #+STARTUP: indent
@@ -9,119 +9,270 @@
 
 
 
-* Общие привязки
+* Global keybindings
 
-** Загрузка и выполнение файла
+** Load file
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key   [C-tab]             'load-file)
+  (set-key :global-map (kbd "<C-tab>") 'load-file)
 #+END_SRC
 
 
-** Eshell (оболочка + выполнение elisp выражений)
+** Eshell (minibuffer)
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key   (kbd "C-`")         'eshell-command)
+  (set-key :global-map (kbd "C-`") 'eshell-command)
 #+END_SRC
 
 
-** Swiper (интерактивный поиск)
+** Swiper (interactive search)
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key   (kbd "C-c s")       'swiper-isearch)
+  (set-key :global-map (kbd "C-c s") 'swiper-isearch)
 #+END_SRC
 
 
-** Treemacs (боковая панель, файлы проектов)
+** Treemacs (switch between workspaces)
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key   (kbd "C-c C-w w")   'treemacs-toggle-fixed-width)
+  (set-key :global-map (kbd "C-c C-w s") 'treemacs-switch-workspace)
 #+END_SRC
 
 
-** Список буферов
+** Interactive list of buffers
 
 #+BEGIN_SRC emacs-lisp
-  (require                          'bs)
-  (require                     'ibuffer)
-  (global-set-key (kbd "<f2>") 'bs-show)
+  (set-key :global-map (kbd "<f2>") 'ibuffer)
 #+END_SRC
 
 
-** Быстрое перемещение к выбранному символу
+** Quick jump to the target symbol
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+  (set-key :global-map (kbd "C-c SPC") 'ace-jump-mode)
 #+END_SRC
 
 
-** Подсветка всех совпадений с символом
+** Name search in project files
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c h") 'symbol-overlay-mode)
+  (set-key :global-map (kbd "C-c g") 'projectile-grep)
 #+END_SRC
 
 
-** Сворачивание блоков кода в компактный вид
+** Highlight matching symbols
 
 #+BEGIN_SRC emacs-lisp
-  (defun set-selective-display-dlw (&optional level)
-    (interactive "P")
-    (if (eq selective-display (1+ (current-column)))
-        (set-selective-display 0)
-        (set-selective-display
-         (or level (1+ (current-column))))))
-
-
-  (global-set-key (kbd "<f5>") 'set-selective-display-dlw)
+  (set-key :global-map (kbd "C-c h") 'symbol-overlay-mode)
 #+END_SRC
 
 
-** Multiple-cursors (добавление дополнительных курсоров)
+** Code folding
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key   [M-S-mouse-3]  'mc/mark-all-symbols-like-this-in-defun)
-  (global-set-key   [M-S-mouse-2]  'mc/mark-all-symbols-like-this)
-  (global-set-key   [M-S-mouse-1]  'mc/add-cursor-on-click)
-  (global-set-key   (kbd "M--")    'mc/mark-next-like-this)
+  (set-key :global-map (kbd "<f5>") 'set-selective-display-dlw)
+#+END_SRC
+
+
+** Multiple cursors
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :global-map (kbd "<M-S-mouse-3>")  'mc/mark-all-symbols-like-this-in-defun
+                       (kbd "<M-S-mouse-2>")  'mc/mark-all-symbols-like-this
+                       (kbd "<M-S-mouse-1>")  'mc/add-cursor-on-click
+                       (kbd "M--")            'mc/mark-next-like-this)
 #+END_SRC
 
 
 
-* Привязка к языкам разработки
-
-** Common Lisp
-
-#+BEGIN_SRC emacs-lisp
-  ;;
-#+END_SRC
-
+* Keybindings for language modes
 
 ** Python
 
-*** Перейти к определению функции/класса
+*** Define maps
+
+**** Main map
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c d") 'elpy-goto-definition-other-window)
+  (defvar elpy-mode-map
+    (let ((map (make-sparse-keymap "Elpy-mode"))) map)
+    "Key map for the Emacs Lisp Python Environment.")
 #+END_SRC
 
 
-*** Найти все совпадения имени в проекте
+**** Refactor map
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c g") 'projectile-grep)
+  (defvar elpy-refactor-map
+    (let ((map (make-sparse-keymap "Refactor"))) map)
+    "Key map for the refactor command.")
 #+END_SRC
 
 
-*** Проверка синтаксиса
+**** Debug map
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-=") 'flymake-mode)
+  (defvar elpy-pdb-map
+    (let ((map (make-sparse-keymap "Debug"))) map)
+    "Key map for the shell related commands.")
 #+END_SRC
 
 
-*** Проверка синтаксиса
+*** Main keybindings
+
+**** Movement a single line or a region of code
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c v") 'pyvenv-workon)
+  (set-key :elpy-mode-map (kbd "<M-S-up>")     'elpy-nav-move-line-or-region-up
+                          (kbd "<M-S-down>")   'elpy-nav-move-line-or-region-down
+                          (kbd "<M-S-left>")   'elpy-nav-indent-shift-left
+                          (kbd "<M-S-right>")  'elpy-nav-indent-shift-right)
+#+END_SRC
+
+
+**** Virtual environment activation
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c v") 'pyvenv-workon)
+#+END_SRC
+
+
+**** Run REPL
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-p") 'run-python)
+#+END_SRC
+
+
+**** Kill REPL
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-k") 'elpy-shell-kill)
+#+END_SRC
+
+
+**** Check syntax
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-=") 'flymake-mode)
+#+END_SRC
+
+
+**** Doc search for a name
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-d") 'elpy-doc)
+#+END_SRC
+
+
+**** Run tests
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-t") 'elpy-test)
+#+END_SRC
+
+
+*** Refactor keybindings
+
+**** Prefix key
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-r") elpy-refactor-map)
+#+END_SRC
+
+
+**** Inline the variable at point and replace it with its defining expression
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-refactor-map
+           (kbd "i")
+           (cons (format "%snline"
+                         (propertize "i" 'face 'font-lock-keyword-face))
+                 'elpy-refactor-inline))
+#+END_SRC
+
+
+**** Move the selection to a new function
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-refactor-map
+           (kbd "f")
+           (cons (format "%sunction"
+                         (propertize "f" 'face 'font-lock-keyword-face))
+                 'elpy-refactor-extract-function))
+#+END_SRC
+
+
+**** Move the selection to a new variable
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-refactor-map
+           (kbd "v")
+           (cons (format "%sariable"
+                         (propertize "v" 'face 'font-lock-keyword-face))
+                 'elpy-refactor-extract-variable))
+#+END_SRC
+
+
+**** Rename all occurences of the name at point in package
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-refactor-map
+           (kbd "r")
+           (cons (format "%sename"
+                         (propertize "r" 'face 'font-lock-keyword-face))
+                 'elpy-refactor-rename))
+#+END_SRC
+
+
+*** Debug keybindings
+
+**** Prefix key
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-mode-map (kbd "C-c C-u") elpy-pdb-map)
+#+END_SRC
+
+
+**** Run debug on the current buffer
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-pdb-map
+           (kbd "d")
+           (cons (format "%sebug-buffer"
+                         (propertize "d" 'face 'font-lock-keyword-face))
+                 'elpy-pdb-debug-buffer))
+#+END_SRC
+
+
+**** Run debug on the current buffer and pause at the cursor position
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-pdb-map
+           (kbd "p")
+           (cons (format "%soint-run"
+                         (propertize "p" 'face 'font-lock-keyword-face))
+                 'elpy-pdb-break-at-point))
+#+END_SRC
+
+
+**** Run post-mortem debug on the last exception
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-pdb-map
+           (kbd "e")
+           (cons (format "%sxception-last"
+                         (propertize "e" 'face 'font-lock-keyword-face))
+                 'elpy-pdb-debug-last-exception))
+#+END_SRC
+
+
+**** Add or remove a breakpoint on the current line
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :elpy-pdb-map
+           (kbd "b")
+           (cons (format "%sreakpoint-toggle"
+                         (propertize "b" 'face 'font-lock-keyword-face))
+                 'elpy-pdb-toggle-breakpoint-at-point))
 #+END_SRC
