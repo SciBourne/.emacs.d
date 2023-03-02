@@ -1,0 +1,349 @@
+#+title: GNU Emacs congiguration file: common-lisp-language.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Main setup
+
+** SBCL
+
+#+BEGIN_SRC emacs-lisp
+  (setq inferior-lisp-program "sbcl")
+#+END_SRC
+
+
+** Slime
+
+#+BEGIN_SRC emacs-lisp
+  (require 'slime)
+  (require 'slime-autoloads)
+
+  (slime-setup '(slime-asdf
+                 slime-fancy
+                 slime-indentation))
+#+END_SRC
+
+
+** Hooks
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook  'lisp-mode-hook  'font-lock-theme-common-lisp)
+  (add-hook  'lisp-mode-hook  'highlight-numbers-mode)
+  (add-hook  'lisp-mode-hook  'highlight-parentheses-mode)
+  (add-hook  'lisp-mode-hook  'smartparens-mode)
+#+END_SRC
+
+
+** Horizontal indents
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default lisp-body-indent 2)
+  (setq-default lisp-indent-function 'common-lisp-indent-function)
+#+END_SRC
+
+
+
+* Syntax highlighting
+
+** Declares faces
+
+#+BEGIN_SRC emacs-lisp
+  (defface highlight-common-lisp-operators
+      '((((class color) (min-colors 256))
+         :foreground "#6F8BB1")
+        (t :inverse-video t))
+    "Highlight simple operators"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-parentheses
+      '((((class color) (min-colors 256))
+         :foreground "#4F7D9D")
+        (t :inverse-video t))
+    "Highlight parentheses"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-keywords
+      '((((class color) (min-colors 256))
+         :foreground "#475BEA")
+        (t :inverse-video t))
+    "Highlight keywords"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-quoted-symbols
+      '((((class color) (min-colors 256))
+         :inherit 'font-lock-builtin-face))
+    "Highlight quoted symbol names"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-key-symbols
+      '((((class color) (min-colors 256))
+         :inherit 'font-lock-constant-face))
+    "Highlight key symbol names"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-variables
+      '((((class color) (min-colors 256))
+         :inherit 'font-lock-variable-name-face))
+    "Highlight variables and constant names"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-keywords-main
+      '((((class color) (min-colors 256))
+         :inherit 'font-lock-keyword-face))
+    "Highlight main built-in keywords"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-keywords-secondary
+      '((((class color) (min-colors 256))
+         :foreground "pale goldenrod")
+        (t :inverse-video t))
+    "Highlight secondary built-in keywords"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-custom-keywords-main
+      '((((class color) (min-colors 256))
+         :inherit 'highlight-common-lisp-keywords-main))
+    "Highlight main custom keywords"
+    :group 'common-lisp-faces)
+
+
+  (defface highlight-common-lisp-custom-keywords-secondary
+      '((((class color) (min-colors 256))
+         :inherit 'highlight-common-lisp-keywords-secondary))
+    "Highlight secondary custom keywords"
+    :group 'common-lisp-faces)
+#+END_SRC
+
+
+** Highlight custom keywords (bright)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :custom-keywords-main
+
+                                      "let-gensym")
+#+END_SRC
+
+
+** Highlight custom keywords (dark)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :custom-keywords-secondary
+
+                                      "concat"
+                                      "get-time"
+                                      "doc"
+                                      "del")
+#+END_SRC
+
+
+** Highlight builtin keywords (bright)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :keywords-main
+
+                                      "set"
+                                      "setf"
+                                      "setq"
+                                      "format"
+                                      "print"
+                                      "princ"
+                                      "vector"
+                                      "string"
+                                      "symbol"
+                                      "list"
+                                      "cons"
+                                      "nconc"
+                                      "type-of"
+                                      "search"
+                                      "length")
+#+END_SRC
+
+
+** Highlight builtin keywords (dark)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :keywords-secondary
+
+                                      "eq"
+                                      "eql"
+                                      "equal"
+                                      "equalp"
+                                      "funcall"
+                                      "map"
+                                      "mapcan"
+                                      "mapcon"
+                                      "mapcar"
+                                      "mapc"
+                                      "maplist"
+                                      "mapl"
+                                      "nth-value"
+                                      "values"
+                                      "documentation"
+                                      "string-upcase"
+                                      "describe"
+                                      "subseq"
+                                      "intern"
+                                      "otherwise"
+                                      "append"
+                                      "getf"
+                                      "remf"
+                                      "nth"
+
+                                      "car"
+                                      "cdr"
+                                      "caar"
+                                      "cddr"
+                                      "cadr"
+                                      "cdar"
+                                      "caaar"
+                                      "cdddr"
+                                      "caddr"
+                                      "cdadr"
+                                      "cddar"
+                                      "cdaar"
+                                      "cadar"
+                                      "caadr"
+                                      "caaaar"
+                                      "cddddr"
+                                      "cadddr"
+                                      "cdaddr"
+                                      "cddadr"
+                                      "cdddar"
+                                      "cdaaar"
+                                      "cadaar"
+                                      "caadar"
+                                      "caaadr"
+
+                                      "oddp"
+                                      "nconc"
+                                      "reverse"
+                                      "nreverse"
+                                      "gensym"
+                                      "pprint"
+                                      "gethash"
+                                      "remhash"
+                                      "make-hash-table"
+                                      "not"
+
+                                      "repeat"
+                                      "being"
+                                      "using"
+                                      "while"
+                                      "for"
+                                      "else"
+                                      "in"
+                                      "on"
+                                      "to"
+                                      "by"
+                                      "into"
+                                      "from"
+                                      "sum"
+                                      "summing"
+                                      "count"
+                                      "counting"
+                                      "maximize"
+                                      "maximizing"
+                                      "minimize"
+                                      "minimizing"
+                                      "collect"
+                                      "collecting"
+                                      "with"
+                                      "when"
+                                      "then"
+                                      "thereis"
+                                      "always"
+                                      "until"
+                                      "never"
+                                      "named"
+                                      "finally"
+                                      "initially"
+
+                                      "equalp"
+                                      "boundp"
+                                      "fboundp"
+                                      "intern"
+                                      "vectorp"
+                                      "stringp"
+                                      "numberp"
+                                      "listp"
+                                      "consp"
+                                      "floatp"
+                                      "realp"
+                                      "complexp"
+                                      "rationalp"
+                                      "functionp"
+                                      "symbolp"
+                                      "typep"
+                                      "evenp"
+                                      "oddp")
+#+END_SRC
+
+
+** Highlight variables and constants (*var* +const+)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :variables)
+#+END_SRC
+
+
+** Highlight quoted symbols ('symbol)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :quoted-symbols)
+#+END_SRC
+
+
+** Highlight keyword symbols (:symbol)
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :key-symbols
+
+                                      "t"
+                                      "T"
+                                      "nil"
+                                      "NIL")
+#+END_SRC
+
+
+** Highlight simple operators
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :operators
+
+                                      "+"
+                                      "-"
+                                      "*"
+                                      "/"
+                                      "="
+                                      "/="
+                                      ">"
+                                      "<"
+                                      ">="
+                                      "<="
+                                      "%"
+                                      ".")
+#+END_SRC
+
+
+** Highlight parentheses
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-common-lisp-keywords :parentheses
+
+                                      "("
+                                      ")")
+#+END_SRC
