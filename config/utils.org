@@ -118,9 +118,8 @@
 ** Common Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (defmacro font-lock-add-common-lisp-keywords (&rest args)
-    (let* ((class (car args))
-           (keywords (cdr args))
+  (defmacro font-lock-add-common-lisp-keywords (class &rest keywords)
+    (let* ((flag)
 
            (face-name
              (intern (concat "highlight-common-lisp-"
@@ -129,47 +128,58 @@
            (rx-template
              (eval (cl-case class
                             (:variables
-                             `(rx (any ?+ ?*)
-                                  (+ (any word
-                                          digit
-                                          ?-
-                                          ?+
-                                          ?*
-                                          ?=
-                                          ?^
-                                          ?%
-                                          ?&
-                                          ?$
-                                          ?!
-                                          ??
-                                          ?/
-                                          ?:))))
+                             `(rx (group
+                                   (any ?+ ?*)
+                                   (+ (any word
+                                           digit
+                                           ?-
+                                           ?+
+                                           ?*
+                                           ?=
+                                           ?^
+                                           ?%
+                                           ?&
+                                           ?$
+                                           ?!
+                                           ??
+                                           ?/
+                                           ?:)))))
 
                             (:quoted-symbols
                              `(rx "'"
-                                  (+ (any word
-                                          digit
-                                          ?-
-                                          ?+
-                                          ?*
-                                          ?=
-                                          ?^
-                                          ?%
-                                          ?&
-                                          ?$
-                                          ?!
-                                          ??
-                                          ?/
-                                          ?:))))
+                                  (group
+                                   (+ (any word
+                                           digit
+                                           ?-
+                                           ?+
+                                           ?*
+                                           ?=
+                                           ?^
+                                           ?%
+                                           ?&
+                                           ?$
+                                           ?!
+                                           ??
+                                           ?/
+                                           ?:)))))
 
-                            (:parentheses `(rx (or ,@keywords)))
+                            (:parentheses
+                             `(rx (or ,@keywords)))
 
-                            (otherwise `(rx symbol-start
-                                            (or ,@keywords)
-                                            symbol-end))))))
+                            (:comment-notes
+                             (setf flag t)
+                             `(rx space
+                                  word-start
+                                  (group (or ,@keywords))
+                                  ?: space))
+
+                            (otherwise
+                             `(rx (group symbol-start
+                                         (or ,@keywords)
+                                         symbol-end)))))))
 
       `(font-lock-add-keywords
-        'lisp-mode '((,rx-template . ',face-name)))))
+        'lisp-mode '((,rx-template 1 ',face-name ,flag)))))
 #+END_SRC
 
 
