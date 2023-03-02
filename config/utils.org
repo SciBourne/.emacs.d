@@ -207,9 +207,8 @@
                                      ?.)
                                  (group symbol-start
                                         (+ (any word digit ?_)))
-                                 space
-                                 (any "=")
-                                 space))
+                                 (or (group space ?= space)
+                                     (group ?: space (+ (any word ?_ ?( ?) ))))))
 
                            (:comment-notes
                             (setf flag t)
