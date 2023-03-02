@@ -114,7 +114,7 @@
 #+BEGIN_SRC emacs-lisp
   (defvar elpy-pdb-map
     (let ((map (make-sparse-keymap "Debug"))) map)
-    "Key map for the shell related commands.")
+    "Key map for the debug commands.")
 #+END_SRC
 
 
