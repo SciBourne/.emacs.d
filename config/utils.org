@@ -48,35 +48,31 @@
 * Frame setting at startup
 
 #+BEGIN_SRC emacs-lisp
-  (cl-defmacro custom-default-frame-alist (&key frame-alpha frame-size frame-maximized)
-    (let ((width-size (gensym))
-          (height-size (gensym)))
+  (cl-defmacro custom-default-frame-alist (&key alpha size maximized)
+    (let ((width-size (round (/
+                              (* (nth 0 size) (x-display-pixel-width))
+                              (frame-char-width))))
 
-      `(let ((,width-size ,(round (/
-                                   (* (nth 0 frame-size) (x-display-pixel-width))
-                                   (frame-char-width))))
+          (height-size (round (/
+                               (* (nth 1 size) (x-display-pixel-height))
+                               (frame-char-height)))))
 
-             (,height-size ,(round (/
-                                    (* (nth 1 frame-size) (x-display-pixel-height))
-                                    (frame-char-height)))))
+      `(custom-set-variables '(default-frame-alist
+                               '((alpha ,@alpha)
 
-         (custom-set-variables '(default-frame-alist
-                                 '((alpha ,@frame-alpha)
+                                 (top . 2)
+                                 (left . 2)
 
-                                   (top . 2)
-                                   (left . 2)
+                                 (width . ,size)
+                                 (height . ,size)
 
-                                   (width . ,width-size)
+                                 ,(when maximized
+                                    '(fullscreen . maximized))
 
-                                   (height . ,height-size)
+                                 (left-fringe . 8)
+                                 (right-fringe . 0)
 
-                                   ,(when frame-maximized
-                                      '(fullscreen . maximized))
-
-                                   (left-fringe . 8)
-                                   (right-fringe . 0)
-
-                                   (vertical-scroll-bars)))))))
+                                 (vertical-scroll-bars))))))
 #+END_SRC
 
 
@@ -180,19 +176,38 @@
 ** Python
 
 #+BEGIN_SRC emacs-lisp
-  (defmacro font-lock-add-python-keywords (&rest args)
-    (let* ((class (car args))
-           (keywords (cdr args))
+  (defmacro font-lock-add-python-keywords (class &rest keywords)
+    (let* ((flag)
 
-           (face-name
-             (intern (concat "highlight-python-"
-                             (substring (symbol-name class) 1))))
+          (face-name
+            (intern (concat "highlight-python-"
+                            (substring (symbol-name class) 1))))
 
-           (rx-template
-             (eval (cl-case class
-                            (:named-parameters `(rx (+ (any word ?_ )) (any "=")))
-                            (otherwise `(rx (or ,@keywords)))))))
+          (rx-template
+            (eval (cl-case class
+                           (:named-parameters
+                            `(rx (group (+ (any word ?_ )) (any "="))))
+
+                           (:keyword-names
+                            `(rx (group symbol-start (or ,@keywords) space)))
+
+                           (:variables
+                            `(rx (group symbol-start
+                                        (+ (any word digit ?_)))
+                                 (group space
+                                        (any "=")
+                                        space)))
+
+                           (:comment-notes
+                            (setf flag t)
+                            `(rx ?# space
+                                 word-start
+                                 (group (or ,@keywords))
+                                 ?: space))
+
+                           (otherwise
+                            `(rx (group (or ,@keywords))))))))
 
       `(font-lock-add-keywords
-        'python-mode '((,rx-template . ',face-name)))))
+        'python-mode '((,rx-template 1 ',face-name ,flag)))))
 #+END_SRC
