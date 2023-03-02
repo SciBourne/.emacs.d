@@ -85,10 +85,10 @@
     :group 'common-lisp-faces)
 
 
-  (defface highlight-common-lisp-key-symbols
+  (defface highlight-common-lisp-constants
       '((((class color) (min-colors 256))
          :inherit 'font-lock-constant-face))
-    "Highlight key symbol names"
+    "Highlight constant names"
     :group 'common-lisp-faces)
 
 
@@ -310,7 +310,7 @@
 ** Highlight keyword symbols (:symbol)
 
 #+BEGIN_SRC emacs-lisp
-  (font-lock-add-common-lisp-keywords :key-symbols
+  (font-lock-add-common-lisp-keywords :constants
 
                                       "t"
                                       "T"
