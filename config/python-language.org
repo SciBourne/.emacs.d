@@ -1,0 +1,147 @@
+#+title: GNU Emacs congiguration file: python-language.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Main setup
+
+** Virtual environments
+
+#+BEGIN_SRC emacs-lisp
+  (setq python-shell-interpreter "python")
+  (setq python-shell-interpreter-args "-i")
+
+  (setenv "WORKON_HOME" "~/anaconda3/envs")
+#+END_SRC
+
+
+** Elpy activation
+
+#+BEGIN_SRC emacs-lisp
+  (elpy-enable)
+#+END_SRC
+
+
+** Disable echo input in a shell
+
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+   '(elpy-shell-echo-input nil))
+#+END_SRC
+
+
+** Hooks
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook  'python-mode-hook  'elpy-mode)
+
+  (add-hook  'elpy-mode-hook    'highlight-numbers-mode)
+  (add-hook  'elpy-mode-hook    'highlight-parentheses-mode)
+  (add-hook  'elpy-mode-hook    'smartparens-mode)
+#+END_SRC
+
+
+** Disable auto-complete in python-mode
+
+#+BEGIN_SRC emacs-lisp
+  (defadvice auto-complete-mode (around disable-auto-complete-for-python)
+    (unless (eq major-mode 'python-mode) ad-do-it))
+
+  (ad-activate 'auto-complete-mode)
+#+END_SRC
+
+
+
+* Syntax highlighting
+
+** Declare faces
+
+#+BEGIN_SRC emacs-lisp
+  (defface highlight-python-simple-operators
+    '((((class color) (min-colors 256))
+       :foreground "#6F8BB1")
+      (t :inverse-video t))
+      "Highlight simple and assigment operators"
+      :group 'python-faces)
+
+
+  (defface highlight-python-named-parameters
+    '((((class color) (min-colors 256))
+       :foreground "#706A9B")
+      (t :inverse-video t))
+      "Highlight named parameters"
+      :group 'python-faces)
+
+
+  (defface highlight-python-keyword-names
+    '((((class color) (min-colors 256))
+       :inherit 'font-lock-keyword-face))
+      "Add more highlight keyword names"
+      :group 'python-faces)
+
+
+  (defface highlight-python-variables
+    '((((class color) (min-colors 256))
+       :inherit 'font-lock-variable-name-face))
+      "Fix highlight variables names"
+      :group 'python-faces)
+
+
+  (defface highlight-python-comment-notes
+    '((((class color) (min-colors 256))
+       :inherit 'font-lock-warning-face))
+      "Highlight comment notes as FIXME: and TODO:"
+      :group 'python-faces)
+#+END_SRC
+
+
+** Highlight simple operators
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :simple-operators
+
+                                 "(" ")" "<" ">" "="
+                                 "+" "-" "*" "!" "&"
+                                 "|" "%" "/" "^" "~"
+                                 "[" "]" "." ",")
+#+END_SRC
+
+
+** Highlight custom keywords
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :keyword-names
+
+                                 "match"
+                                 "case")
+#+END_SRC
+
+
+** Highlight comment notes
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :comment-notes
+
+                                 "TODO"
+                                 "FIXME")
+#+END_SRC
+
+
+** Highlight named parameters
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :named-parameters)
+#+END_SRC
+
+
+** Highlight variables
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :variables)
+#+END_SRC
