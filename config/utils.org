@@ -202,11 +202,14 @@
                             `(rx (group symbol-start (or ,@keywords) space)))
 
                            (:variables
-                            `(rx (group symbol-start
+                            `(rx (or (repeat 4 space)
+                                     line-start
+                                     ?.)
+                                 (group symbol-start
                                         (+ (any word digit ?_)))
-                                 (group space
-                                        (any "=")
-                                        space)))
+                                 space
+                                 (any "=")
+                                 space))
 
                            (:comment-notes
                             (setf flag t)
