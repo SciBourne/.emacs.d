@@ -307,7 +307,7 @@
 #+END_SRC
 
 
-** Highlight keyword symbols (:symbol)
+** Highlight constants
 
 #+BEGIN_SRC emacs-lisp
   (font-lock-add-common-lisp-keywords :constants
@@ -316,6 +316,16 @@
                                       "T"
                                       "nil"
                                       "NIL")
+#+END_SRC
+
+
+** Highlight comment notes
+
+#+BEGIN_SRC emacs-lisp
+  (font-lock-add-python-keywords :comment-notes
+
+                                 "TODO"
+                                 "FIXME")
 #+END_SRC
 
 
