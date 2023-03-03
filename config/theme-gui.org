@@ -123,7 +123,11 @@
 
    '(highlight-numbers-number
      ((t
-       (:foreground "light green")))))
+       (:foreground "light green"))))
+
+   '(comint-highlight-prompt
+     ((t
+       (:foreground "chartreuse")))))
 #+END_SRC
 
 
