@@ -27,7 +27,7 @@
   (defmacro set-key (map &rest keybindings)
     (let ((map (intern-soft (cl-subseq (symbol-name map) 1))))
       `(progn ,@(cl-loop for (key func) on keybindings by 'cddr
-			 collect `(define-key ,map ,key ,func)))))
+                         collect `(define-key ,map ,key ,func)))))
 #+END_SRC
 
 
@@ -103,7 +103,7 @@
   (defun display-line-numbers--turn-on ()
 
     "turn on line numbers but excempting certain majore modes
-  defined in `display-line-numbers-exempt-modes'"
+  defined in display-line-numbers-exempt-modes"
 
     (if (and
          (not (member major-mode display-line-numbers-exempt-modes))
@@ -208,7 +208,7 @@
                                  (group symbol-start
                                         (+ (any word digit ?_)))
                                  (or (group space ?= space)
-                                     (group ?: space (+ (any word ?_ ?( ?) ))))))
+                                     (group ?: space (+ (any word ?_ ?\( ?\) ))))))
 
                            (:comment-notes
                             (setf flag t)
