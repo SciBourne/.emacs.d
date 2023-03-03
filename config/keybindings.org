@@ -74,6 +74,20 @@
 #+END_SRC
 
 
+** Run shell with current project
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :global-map (kbd "C-c C-s") 'shell)
+#+END_SRC
+
+
+** Run magit with current project
+
+#+BEGIN_SRC emacs-lisp
+  (set-key :global-map (kbd "C-c C-m") 'magit)
+#+END_SRC
+
+
 ** Multiple cursors
 
 #+BEGIN_SRC emacs-lisp
