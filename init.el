@@ -17,42 +17,40 @@
 				   lang-modes)
 
   (cl-labels ((path-to (file-name)
-		       (expand-file-name file-name
-					 (expand-file-name sub-dir
-							   user-emacs-directory)))
+		       (expand-file-name (concat file-name ".org")
+					 (expand-file-name sub-dir user-emacs-directory)))
 	      (ui-mode (file-names)
 		       (let ((mode (if (display-graphic-p) "gui" "tty")))
 			 (cl-remove-if-not (lambda (file-name)
 					     (cl-search mode file-name))
-					   file-names)))
+			 		   file-names)))
 	      (load-conf (path)
 			 (condition-case error-msg
-					 (progn (org-babel-load-file path)
-						(message " [ OK ]  Load file: %s" path))
-					 (error (message " [ ER ]  Cannot load file %s: %s" path error-msg)))))
+			     (progn (org-babel-load-file path)
+				    (message " [ OK ]  Load file: %s" path))
+			   (error (message " [ ER ]  Cannot load file %s: %s" path error-msg)))))
 
-	     (let ((file-names `(,user-utils
-				 ,install-packages
-				 ,common-settings
-				 ,keybindings
-				 ,@lang-modes
-				 ,@(ui-mode user-interface))))
+    (let ((file-names `(,user-utils
+			,install-packages
+			,common-settings
+			,keybindings
+			,@lang-modes
+			,@(ui-mode user-interface))))
 
-	       (cl-loop for file-name in file-names
-			do (load-conf (path-to file-name))))))
-
+      (cl-loop for file-name in file-names
+	       do (load-conf (path-to file-name))))))
 
 
 
 (load-org-config :sub-dir            "config"
 
 		 :user-utils         "utils"
-		 :install-packages   "packages.org"
-		 :common-settings    "common.org"
-		 :keybindings        "keybindings.org"
+		 :install-packages   "packages"
+		 :common-settings    "common"
+		 :keybindings        "keybindings"
 
-		 :user-interface    ("theme-gui.org"
-				     "theme-tty.org")
+		 :user-interface    ("theme-gui"
+				     "theme-tty")
 
-		 :lang-modes        ("common-lisp-language.org"
-				     "python-language.org"))
+		 :lang-modes        ("common-lisp-language"
+				     "python-language"))
