@@ -17,7 +17,7 @@
   (setq python-shell-interpreter "python")
   (setq python-shell-interpreter-args "-i")
 
-  (setenv "WORKON_HOME" "~/anaconda3/envs")
+  (setenv "WORKON_HOME" "~/.venv")
 #+END_SRC
 
 
