@@ -208,7 +208,12 @@
                                  (group symbol-start
                                         (+ (any word digit ?_)))
                                  (or (group space ?= space)
-                                     (group ?: space (+ (any word ?_ ?\( ?\) ))))))
+                                     (group ?: space (+ (any word
+                                                             ?\(
+                                                             ?\)
+                                                             ?\"
+                                                             ?\'
+                                                             ?_))))))
 
                            (:comment-notes
                             (setf flag t)
@@ -222,4 +227,8 @@
 
       `(font-lock-add-keywords
         'python-mode '((,rx-template 1 ',face-name ,flag)))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  ;;
 #+END_SRC
