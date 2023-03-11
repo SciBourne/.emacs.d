@@ -45,6 +45,62 @@
 
 
 
+* Switch between windows configurations
+
+#+BEGIN_SRC emacs-lisp
+  (defvar custom-window-configurations '(nil nil nil))
+
+
+  (defun save-current-window-configuration ()
+    (interactive)
+    (let ((num-config (string-to-number
+                       (edmacro-format-keys
+                        (vector last-input-event)))))
+
+      (when (setf (nth (1- num-config) custom-window-configurations)
+                  (current-window-configuration))
+        (message "%s %s"
+                 (propertize "[ Save windows configuration ]:"
+                             'face
+                             '(:foreground "cornflower blue"))
+
+                 (propertize (number-to-string num-config)
+                             'face
+                             '(:foreground "medium spring green"))))))
+
+
+  (defun switch-window-configuration ()
+    (interactive)
+    (let ((num-config (string-to-number
+                       (edmacro-format-keys
+                        (vector last-input-event)))))
+
+      (cond ((nth (1- num-config) custom-window-configurations)
+             (when (set-window-configuration
+                    (nth (1- num-config) custom-window-configurations))
+
+               (message "%s %s"
+                        (propertize "[ Set windows configuration ]:"
+                                    'face
+                                    '(:foreground "cornflower blue"))
+                        (propertize (number-to-string num-config)
+                                    'face
+                                    '(:foreground "medium spring green")))))
+
+            ((message "%s Windows configuration %s is %s"
+                    (propertize "[ ERROR ]:"
+                                'face
+                                '(:foreground "tomato"))
+                    (propertize (number-to-string num-config)
+                                'face
+                                '(:foreground "coral"))
+                    (propertize "null"
+                                'face
+                                '(:foreground "coral")))))))
+#+END_SRC
+
+
+
 * Frame setting at startup
 
 #+BEGIN_SRC emacs-lisp
@@ -227,8 +283,4 @@
 
       `(font-lock-add-keywords
         'python-mode '((,rx-template 1 ',face-name ,flag)))))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  ;;
 #+END_SRC
