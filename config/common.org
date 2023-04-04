@@ -83,6 +83,7 @@
 
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
+  (setq org-image-actual-width nil)
 #+END_SRC
 
 
@@ -190,6 +191,13 @@
 
 
 * Packages setting
+
+** Org Mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-image-actual-width nil)
+#+END_SRC
+
 
 ** Multiple-cursors
 

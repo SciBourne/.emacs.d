@@ -62,14 +62,6 @@
     :group 'common-lisp-faces)
 
 
-  (defface highlight-common-lisp-parentheses
-      '((((class color) (min-colors 256))
-         :foreground "#4F7D9D")
-        (t :inverse-video t))
-    "Highlight parentheses"
-    :group 'common-lisp-faces)
-
-
   (defface highlight-common-lisp-keywords
       '((((class color) (min-colors 256))
          :foreground "#475BEA")
@@ -322,7 +314,7 @@
 ** Highlight comment notes
 
 #+BEGIN_SRC emacs-lisp
-  (font-lock-add-python-keywords :comment-notes
+  (font-lock-add-common-lisp-keywords :comment-notes
 
                                  "TODO"
                                  "FIXME")
@@ -346,14 +338,4 @@
                                       "<="
                                       "%"
                                       ".")
-#+END_SRC
-
-
-** Highlight parentheses
-
-#+BEGIN_SRC emacs-lisp
-  (font-lock-add-common-lisp-keywords :parentheses
-
-                                      "("
-                                      ")")
 #+END_SRC

@@ -72,5 +72,6 @@
                      'websocket
                      'json-mode
                      'markdown-mode
-                     'csharp-mode)
+                     'csharp-mode
+                     'protobuf-mode)
 #+END_SRC
