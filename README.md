@@ -220,7 +220,7 @@ C:\Users\<user-name>\AppData\Roaming\.emacs.d\emacs_explorer.reg
 <br>
 <br>
 
-<h6>Have a nice day :)</h6>
+<h6>Shut up and hack, man ;)</h6>
 
 
 
