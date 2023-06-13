@@ -20,20 +20,6 @@ Edit the configuration files as you like. First of all, pay attention to the set
 
 ###### Configuration files:
 
-| Path | Description |
-| --- | --- |
-| ~/emacs.d/init.el | Main initialization file |
-| ~/.emacs.d/config | User init files directory |
-| ~/.emacs.d/config/theme-gui.org | Color themes and packages setting for GUI |
-| ~/.emacs.d/config/theme-tty.org | Color themes and packages setting for TTY |
-| ~/.emacs.d/config/packages.org | User packages set for automatically install them at startup |
-| ~/.emacs.d/config/keybindings.org | User keybinding |
-| ~/.emacs.d/config/common.org | Common setting and modes |
-| ~/.emacs.d/config/utils.org | Common library for the config |
-| ~/.emacs.d/config/common-lisp.el | Setting for lisp-mode (.lisp) |
-| ~/.emacs.d/config/python-language.org | Settings for elpy-mode (.py) |
-| ~/.emacs.d/config/rust-language.org | Settings for rustic-mode (.rs) |
-
 
 ```yaml
 
@@ -41,17 +27,20 @@ Edit the configuration files as you like. First of all, pay attention to the set
     - init.el          # Main initialization file
     
     config/:
-        - packages.org
-        - utils.org
-        - common.org
-        - keybindings.org
-        - theme-gui.org
-        - theme-tty.org
-        - common-lisp-language.org
-        - python-language.org
-        - rust-language.org
+        - packages.org                # Set packages for autoinstall on startup
+        - utils.org                   # Common library
+        - common.org                  # Common settings
+        - keybindings.org             # Keybinding maps
+        
+        - theme-gui.org               # GUI theme settings
+        - theme-tty.org               # TTY theme settings
+        
+        - common-lisp-language.org    # Settings for lisp-mode [ .lisp ]
+        - python-language.org         # Settings for elpy-mode [ .py ]
+        - rust-language.org           # Settings for rustic-mode [ .rs ]
 
 ```
+
 
 <br>
 
