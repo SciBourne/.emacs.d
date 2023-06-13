@@ -5,11 +5,11 @@
   <br>
   <br>
   <h6>Kaolin-dark theme for GUI</h6>
-  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-gui.jpg">
+  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-gui.png">
   <br>
   <br>
   <h6>Kaolin-dark theme for TTY</h6>
-  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-tty.jpg">
+  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-tty.png">
   <br>
   <br>
  </div>
