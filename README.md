@@ -16,7 +16,7 @@
 
 ## Edit configuration
 
-Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
+Edit configuration files as you like. First of all, pay attention to the settings of the UI.
 
 ###### Configuration files:
 
