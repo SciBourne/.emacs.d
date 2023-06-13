@@ -24,7 +24,7 @@ Edit the configuration files as you like. First of all, pay attention to the set
 ```yaml
 
 .emacs.d/:
-    - init.el          # Main initialization file
+    - init.el                         # Main initialization file
     
     config/:
         - packages.org                # Set packages for autoinstall on startup
