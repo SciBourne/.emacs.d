@@ -1,38 +1,47 @@
 <div align="center">
-  <img src="https://github.com/SciBourne/emacs.d/raw/master/img/logo.png" width="250" title="hover text">
-  <h1>GNU Emacs packages and configuration</h1>
+  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/logo.png" width="250" title="hover text">
+  <h1>GNU Emacs configuration</h1>
   <p>This is my simply Emacs configuration files for work on GNU Linux and MS Windows.</p>
   <br>
   <br>
   <h6>Kaolin-dark theme for GUI</h6>
-  <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-gui.jpg">
+  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-gui.png">
   <br>
   <br>
   <h6>Kaolin-dark theme for TTY</h6>
-  <img src="https://github.com/SciBourne/emacs.d/raw/master/img/theme-tty.jpg">
+  <img src="https://github.com/SciBourne/emacs.d/raw/main/img/theme-tty.png">
   <br>
   <br>
  </div>
 
 ## Edit configuration
 
-Edit the configuration files as you like. First of all, pay attention to the settings of the UI.
+Edit configuration files as you like. First of all, pay attention to the settings of the UI.
 
 ###### Configuration files:
 
-| Path | Description |
-| --- | --- |
-| ~/emacs.d/init.el | Main initialization file |
-| ~/.emacs.d/config | User init files directory |
-| ~/.emacs.d/config/packages.el | User packages set for automatically install them at startup |
-| ~/.emacs.d/config/extensions.el | Extension, setting and modes |
-| ~/.emacs.d/config/theme-gui.el | Color themes and packages setting for GUI |
-| ~/.emacs.d/config/theme-tty.el | Color themes and packages setting for TTY |
-| ~/.emacs.d/config/keybinding.el | User keybinding |
-| ~/.emacs.d/config/locales.el | Encoding setting |
-| ~/.emacs.d/config/common-lisp.el | Setting for programming on Common Lisp (SBCL) |
-| ~/.emacs.d/config/aliases.el | User aliases |
-| ~/.emacs.d/config/irc.el | Template setting for RCIRC client |
+
+```yaml
+
+.emacs.d/:
+    - init.el                         # Main initialization file
+
+    config/:
+        - packages.org                # Set packages for autoinstall on startup
+        - utils.org                   # Common library
+        - common.org                  # Common settings
+        - keybindings.org             # Keybinding maps
+
+        - theme-gui.org               # GUI theme settings
+        - theme-tty.org               # TTY theme settings
+
+        - common-lisp-language.org    # Settings for lisp-mode [ .lisp ]
+        - python-language.org         # Settings for elpy-mode [ .py ]
+        - rust-language.org           # Settings for rustic-mode [ .rs ]
+        - assembler-language.org      # Settings for gas-mode [ .asm ]
+
+```
+
 
 <br>
 
@@ -212,21 +221,4 @@ C:\Users\<user-name>\AppData\Roaming\.emacs.d\emacs_explorer.reg
 <br>
 <br>
 
-<h6>Have a nice day :)</h6>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h6>Shut up and hack, man ;)</h6>
