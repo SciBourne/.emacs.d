@@ -73,5 +73,9 @@
                      'json-mode
                      'markdown-mode
                      'csharp-mode
-                     'protobuf-mode)
+                     'protobuf-mode
+                     'rust-mode
+                     'rustic
+                     'lsp-mode
+                     'nhexl-mode)
 #+END_SRC
