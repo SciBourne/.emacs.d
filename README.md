@@ -38,7 +38,7 @@ Edit configuration files as you like. First of all, pay attention to the setting
         - common-lisp-language.org    # Settings for lisp-mode [ .lisp ]
         - python-language.org         # Settings for elpy-mode [ .py ]
         - rust-language.org           # Settings for rustic-mode [ .rs ]
-		- assembler-language.org      # Settings for gas-mode [ .asm ]
+        - assembler-language.org      # Settings for gas-mode [ .asm ]
 
 ```
 
