@@ -1,0 +1,15 @@
+#+title: GNU Emacs congiguration file: rust-language.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+* Main
+
+#+BEGIN_SRC emacs-lisp
+  ()
+#+END_SRC

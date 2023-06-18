@@ -1,0 +1,31 @@
+#+title: GNU Emacs congiguration file: assembler-language.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Main
+
+#+BEGIN_SRC emacs-lisp
+  (require 'gas-mode)
+#+END_SRC
+
+
+* Hooks
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.asm\\'" . gas-mode))
+#+END_SRC
+
+
+* Indents
+
+#+BEGIN_SRC emacs-lisp
+  (setq gas-initial-indentation 0)
+  (setq gas-indentation 4)
+#+END_SRC

@@ -8,6 +8,21 @@
 
 
 
+(cl-defun load-local-packages (&key sub-dir packages)
+  (cl-loop for package-name in packages
+	   do (load
+
+	       (expand-file-name
+		(concat package-name ".el")
+
+		(expand-file-name
+		 package-name
+
+		 (expand-file-name
+		  sub-dir
+		  user-emacs-directory))))))
+
+
 (cl-defmacro load-org-config (&key sub-dir
 				   user-utils
 				   install-packages
@@ -42,6 +57,11 @@
 
 
 
+(load-local-packages :sub-dir   "packages"
+		     :packages  '("gas-mode"))
+
+
+
 (load-org-config :sub-dir            "config"
 
 		 :user-utils         "utils"
@@ -53,4 +73,6 @@
 				     "theme-tty")
 
 		 :lang-modes        ("common-lisp-language"
+				     "assembler-language"
+				     "rust-language"
 				     "python-language"))
