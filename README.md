@@ -25,19 +25,20 @@ Edit configuration files as you like. First of all, pay attention to the setting
 
 .emacs.d/:
     - init.el                         # Main initialization file
-    
+
     config/:
         - packages.org                # Set packages for autoinstall on startup
         - utils.org                   # Common library
         - common.org                  # Common settings
         - keybindings.org             # Keybinding maps
-        
+
         - theme-gui.org               # GUI theme settings
         - theme-tty.org               # TTY theme settings
-        
+
         - common-lisp-language.org    # Settings for lisp-mode [ .lisp ]
         - python-language.org         # Settings for elpy-mode [ .py ]
         - rust-language.org           # Settings for rustic-mode [ .rs ]
+		- assembler-language.org      # Settings for gas-mode [ .asm ]
 
 ```
 
@@ -221,20 +222,3 @@ C:\Users\<user-name>\AppData\Roaming\.emacs.d\emacs_explorer.reg
 <br>
 
 <h6>Shut up and hack, man ;)</h6>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
