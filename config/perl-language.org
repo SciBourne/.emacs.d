@@ -1,0 +1,71 @@
+#+title: GNU Emacs congiguration file: common.org
+#+author: SciBourne
+
+#+LANGUAGE: en
+#+PROPERTY: results silent
+#+STARTUP: showall
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+
+
+* Main setup
+
+** Replace mode
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'perl-mode 'cperl-mode)
+#+END_SRC
+
+
+** Interpreter
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
+#+END_SRC
+
+
+
+* Customization
+
+** Disable space underline
+
+#+BEGIN_SRC emacs-lisp
+  (setq cperl-invalid-face nil)
+#+END_SRC
+
+
+** Expand keywords (doreach, while, etc...)
+
+#+BEGIN_SRC emacs-lisp
+  (setq cperl-electric-keywords t)
+#+END_SRC
+
+
+** Enable all cperl-mode options
+
+#+BEGIN_SRC emacs-lisp
+  ;;(setq cperl-hairy t)
+#+END_SRC
+
+
+** Disable electric parens
+
+#+BEGIN_SRC emacs-lisp
+  (setq cperl-electric-parens nil)
+
+  (with-eval-after-load 'cperl-mode
+    (define-key cperl-mode-map "{" 'nil))
+#+END_SRC
+
+
+* Hooks
+
+** EIDoc
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'cperl-mode-hook
+            (lambda ()
+              (set (make-local-variable 'eldoc-documentation-function)
+                   'my-cperl-eldoc-documentation-function)))
+#+END_SRC

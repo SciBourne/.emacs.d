@@ -75,4 +75,5 @@
 		 :lang-modes        ("common-lisp-language"
 				     "assembler-language"
 				     "rust-language"
-				     "python-language"))
+				     "python-language"
+				     "perl-language"))
