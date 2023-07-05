@@ -281,3 +281,15 @@
       `(font-lock-add-keywords
         'python-mode '((,rx-template 1 ',face-name ,flag)))))
 #+END_SRC
+
+
+
+* EIDoc for cperl-mode
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-cperl-eldoc-documentation-function ()
+    "Return meaningful doc string for `eldoc-mode'."
+    (car
+     (let ((cperl-message-on-help-error nil))
+       (cperl-get-help))))
+#+END_SRC
