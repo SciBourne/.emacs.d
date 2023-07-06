@@ -239,3 +239,11 @@
 #+BEGIN_SRC emacs-lisp
   (smartparens-global-mode t)
 #+END_SRC
+
+
+** Shell
+
+#+BEGIN_SRC emacs-lisp
+  (require 'shx)
+  (add-hook 'shell-mode-hook 'shx-mode)
+#+END_SRC
