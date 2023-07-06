@@ -77,5 +77,6 @@
                      'rust-mode
                      'rustic
                      'lsp-mode
-                     'nhexl-mode)
+                     'nhexl-mode
+                     'shx)
 #+END_SRC

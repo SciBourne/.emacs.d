@@ -1,4 +1,4 @@
-#+title: GNU Emacs congiguration file: common.org
+#+title: GNU Emacs congiguration file: perl-language.org
 #+author: SciBourne
 
 #+LANGUAGE: en
@@ -11,46 +11,42 @@
 
 * Main setup
 
-** Replace mode
-
+Shadow default mode:
 #+BEGIN_SRC emacs-lisp
   (defalias 'perl-mode 'cperl-mode)
 #+END_SRC
 
-
-** Interpreter
-
+Flycheck:
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
+  (require 'flycheck)
+
+  (setq flycheck-check-syntax-automatically '(mode-enabled save))
+  (setq flycheck-display-errors-delay 0.3)
 #+END_SRC
 
 
 
 * Customization
 
-** Disable space underline
-
+Disable space underline:
 #+BEGIN_SRC emacs-lisp
   (setq cperl-invalid-face nil)
 #+END_SRC
 
-
-** Expand keywords (doreach, while, etc...)
-
+Expand keywords (doreach, while, etc...):
 #+BEGIN_SRC emacs-lisp
   (setq cperl-electric-keywords t)
 #+END_SRC
 
-
-** Enable all cperl-mode options
-
+Indent level:
 #+BEGIN_SRC emacs-lisp
-  ;;(setq cperl-hairy t)
+  (setq cperl-indent-level 2)
+
+  (setq cperl-indent-parens-as-block t)
+  (setq cperl-close-paren-offset (- cperl-indent-level))
 #+END_SRC
 
-
-** Disable electric parens
-
+Disable electric parens:
 #+BEGIN_SRC emacs-lisp
   (setq cperl-electric-parens nil)
 
@@ -59,13 +55,51 @@
 #+END_SRC
 
 
+
 * Hooks
 
-** EIDoc
+Highlight numbers:
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'cperl-mode-hook 'highlight-numbers-mode)
+#+END_SRC
 
+
+Flycheck:
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'cperl-mode-hook 'flycheck-mode)
+#+END_SRC
+
+EIDoc:
 #+BEGIN_SRC emacs-lisp
   (add-hook 'cperl-mode-hook
             (lambda ()
               (set (make-local-variable 'eldoc-documentation-function)
                    'my-cperl-eldoc-documentation-function)))
+#+END_SRC
+
+
+
+* Syntax highlighting
+
+Customize-faces:
+#+BEGIN_SRC emacs-lisp
+  (custom-set-variables
+   '(cperl-pod-head-face 'font-lock-doc-face)
+
+
+  (custom-set-faces
+
+   '(cperl-array-face
+     ((t
+       (:foreground "sienna"
+        :weight bold))))
+
+   '(cperl-hash-face
+     ((t
+       (:foreground "dark slate blue"
+        :weight bold))))
+
+   '(cperl-nonoverridable-face
+     ((t
+       (:foreground "tomato")))))
 #+END_SRC
